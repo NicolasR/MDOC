@@ -1,3 +1,10 @@
+<%@page import="domain.ContactGroup"%>
+<%@page import="java.util.List"%>
+<%@page import="org.hibernate.Query"%>
+<%@page import="org.hibernate.Transaction"%>
+<%@page import="org.hibernate.Session"%>
+<%@page import="org.hibernate.cfg.Configuration"%>
+<%@page import="org.hibernate.SessionFactory"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -34,9 +41,27 @@ Phone number : <input type="text" name="phoneNumber" size="25">
 <fieldset>
 <p>
 Choisissez les groupes :<br />
-<input type="checkbox" name="friends" id="friends" /> <label for="friends">Amis</label><br />
-<input type="checkbox" name="colleague" id="colleague" /> <label for="colleague">Collègues</label><br />
-<input type="checkbox" name="familly" id="familly" /> <label for="familly">Famille</label><br />
+<%
+SessionFactory sessionFactory =
+	new Configuration().configure().buildSessionFactory();
+	Session s = sessionFactory.openSession();
+	
+Transaction t = s.beginTransaction();
+	
+Query query = s.createQuery("from ContactGroup");
+List<ContactGroup> list = query.list();
+for(ContactGroup group : list)
+{
+	%>
+	<input type="checkbox" name="<%=group.getGroupName()%>" id="<%=group.getGroupName()%>" /> 
+	<label for="<%=group.getGroupName()%>"><%=group.getGroupName()%></label><br />
+	<%
+}
+t.commit();
+s.close();
+%>
+Créer un nouveau groupe : <input type="text" name="newGroup" size="25">
+<br />
 </p>
 </fieldset>
 <input type="submit" value="Submit"> <input type="reset" value="Reset">

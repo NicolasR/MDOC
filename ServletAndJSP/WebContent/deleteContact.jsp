@@ -9,6 +9,7 @@
 <body>
 	<form method="post" action="DeleteContact">
 		Id : <input type="text" name="id" size="25">
+	</form>
 <br />
 <br />
 <input type="submit" value="Submit"> <input type="reset" value="Reset">
