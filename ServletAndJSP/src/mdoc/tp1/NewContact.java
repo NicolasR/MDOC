@@ -1,6 +1,7 @@
 package mdoc.tp1;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +12,8 @@ import domain.Address;
 import domain.Contact;
 import domain.DAOAddress;
 import domain.DAOContact;
+import domain.DAOPhoneNumber;
+import domain.PhoneNumber;
 
 /**
  * Servlet implementation class NewContact
@@ -91,6 +94,16 @@ public class NewContact extends HttpServlet {
 		contact.setLastName(lastName);
 		contact.setFirstName(email);
 		
+		DAOPhoneNumber daophonenumber = new DAOPhoneNumber(null);
+		PhoneNumber newphoneNumber = new PhoneNumber();
+		String phoneKind = request.getParameter("phoneKind");
+		String phoneNumber = request.getParameter("phoneNumber");
+		newphoneNumber.setPhoneKind(phoneKind);
+		newphoneNumber.setPhoneNumber(phoneNumber);
+		ArrayList<PhoneNumber> listNumbers = new ArrayList<PhoneNumber>();
+		listNumbers.add(newphoneNumber);
+		contact.setPhones(listNumbers);
+		daoContact.create(contact);
 	}
 
 }

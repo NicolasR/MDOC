@@ -2,22 +2,24 @@ package domain;
 
 import java.util.ArrayList;
 
+import org.hibernate.mapping.List;
+
 public class Contact {
 	private String firstName;
 	private String lastName;
 	private String email;
 	private long id;
 	private Address address;
-	private ArrayList<PhoneNumber> phones;
+	private List phones;
 	private ArrayList<ContactGroup> books;
 	
 	
 	
-	public ArrayList<PhoneNumber> getPhones() {
+	public List getPhones() {
 		return phones;
 	}
 
-	public void setPhones(ArrayList<PhoneNumber> phones) {
+	public void setPhones( List phones) {
 		this.phones = phones;
 	}
 
@@ -69,7 +71,7 @@ public class Contact {
 	public long getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	
