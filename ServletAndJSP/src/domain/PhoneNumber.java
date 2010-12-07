@@ -1,6 +1,5 @@
 package domain;
 
-
 public class PhoneNumber {
 	
 	private Integer id;
