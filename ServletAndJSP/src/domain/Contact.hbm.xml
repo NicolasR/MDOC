@@ -3,11 +3,12 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 7 d?c. 2010 14:03:31 by Hibernate Tools 3.4.0.Beta1 -->
 <hibernate-mapping>
-    <class name="domain.Contact" table="CONTACT">
+    <class name="domain.Contact" table="CONTACT" discriminator-value="C">
         <id name="id" type="long">
             <column name="ID" />
             <generator class="increment" />
         </id>
+        <discriminator column="CONTACT_TYPE" type="character"/>
         <property name="firstName" type="java.lang.String">
             <column name="FIRSTNAME" />
         </property>
@@ -32,5 +33,9 @@
             </key>
             <many-to-many class="domain.ContactGroup" column="GROUPID"/>
         </set>
+        <subclass name="domain.Entreprise" discriminator-value="E">
+        	<property name="NumSiret" column="NUMSIRET" type="java.lang.Integer">
+        	</property>
+        </subclass>
     </class>
 </hibernate-mapping>
