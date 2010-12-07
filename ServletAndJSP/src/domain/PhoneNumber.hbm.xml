@@ -16,7 +16,7 @@
         </property>
         <list name="contacts" table="CONTACT" lazy="true">
             <key>
-                <column name="ID" />
+                <column name="PHONESID" />
             </key>
             <list-index></list-index>
             <one-to-many class="domain.Contact" />

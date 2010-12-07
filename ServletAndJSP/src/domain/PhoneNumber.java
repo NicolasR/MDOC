@@ -1,13 +1,14 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PhoneNumber {
 	
 	private Integer id;
 	private String phoneKind;
 	private String phoneNumber;
-	private ArrayList<Contact> contacts;
+	private List<Contact> contacts;
 	
 	public PhoneNumber(Integer id, String phoneKind, String phoneNumber) {
 		super();
@@ -43,11 +44,11 @@ public class PhoneNumber {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public ArrayList<Contact> getContacts() {
+	public List<Contact> getContacts() {
 		return contacts;
 	}
 
-	public void setContacts(ArrayList<Contact> contacts) {
+	public void setContacts(List<Contact> contacts) {
 		this.contacts = contacts;
 	}
 	

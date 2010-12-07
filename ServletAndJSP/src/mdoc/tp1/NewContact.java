@@ -102,6 +102,8 @@ public class NewContact extends HttpServlet {
 		newphoneNumber.setPhoneNumber(phoneNumber);
 		ArrayList<PhoneNumber> listNumbers = new ArrayList<PhoneNumber>();
 		listNumbers.add(newphoneNumber);
+
+		daophonenumber.create(newphoneNumber);
 		contact.setPhones(listNumbers);
 		daoContact.create(contact);
 	}
