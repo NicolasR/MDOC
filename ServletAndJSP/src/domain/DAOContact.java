@@ -5,10 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 
 public class DAOContact extends DAO<Contact> {
 	
@@ -32,11 +29,10 @@ public class DAOContact extends DAO<Contact> {
 			return false;
 		}
 		return true;*/
-		this.openSession();
-		Transaction transaction = session.beginTransaction();
-		session.save(contact);
+		Transaction transaction = HibernateUtil.currentSession().beginTransaction();
+		HibernateUtil.currentSession().save(contact);
 		transaction.commit();
-		this.closeSession();
+		HibernateUtil.closeSession();
 		return true;
 	}
 
