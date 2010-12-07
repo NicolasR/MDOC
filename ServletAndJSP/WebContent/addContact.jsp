@@ -45,12 +45,12 @@ isEntreprise: <input type="checkbox" name="isEntreprise">
 Siret number: <input type="text" name="numSiret">
 </fieldset>
 <fieldset>
-<p>
 Choisissez les groupes :<br />
 <%
 Transaction t = HibernateUtil.currentSession().beginTransaction();
 	
 Query query = HibernateUtil.currentSession().createQuery("from ContactGroup");
+@SuppressWarnings(value="unchecked")
 List<ContactGroup> list = query.list();
 for(ContactGroup group : list)
 {
@@ -62,11 +62,13 @@ for(ContactGroup group : list)
 t.commit();
 HibernateUtil.closeSession();
 %>
-Créer un nouveau groupe : <input type="text" name="newGroup" size="25">
-<br />
-</p>
 </fieldset>
 <input type="submit" value="Submit"> <input type="reset" value="Reset">
+</form>
+<form method="post" action="CreateGroup">
+<fieldset>
+Créer un nouveau groupe : <input type="text" name="newGroup" size="25"> <input type="submit" value="Submit">
+</fieldset>
 </form>
 </body>
 </html>

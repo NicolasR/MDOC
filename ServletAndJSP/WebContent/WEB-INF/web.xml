@@ -59,4 +59,14 @@
     <servlet-name>UpdateContact</servlet-name>
     <url-pattern>/UpdateContact</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CreateGroup</display-name>
+    <servlet-name>CreateGroup</servlet-name>
+    <servlet-class>mdoc.tp1.CreateGroup</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreateGroup</servlet-name>
+    <url-pattern>/CreateGroup</url-pattern>
+  </servlet-mapping>
 </web-app>
