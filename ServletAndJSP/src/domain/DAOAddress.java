@@ -9,47 +9,47 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 public class DAOAddress extends DAO<Address> {
-	Session session = null;
 
 	public DAOAddress(Connection conn) {
 		super(conn);
-		try{
-		SessionFactory sessionFactory =
-		new Configuration().configure().buildSessionFactory();
-		session = sessionFactory.openSession();
-		} catch(Exception e){
-		System.out.println(e.getMessage());
-		}
 	}
 
 	@Override
 	public boolean create(Address obj) {
+		this.openSession();
 		Transaction transaction = session.beginTransaction();
 		session.save(obj);
 		transaction.commit();
+		this.closeSession();
 		return true;
 	}
 
 	@Override
 	public boolean delete(long id) {
+		this.openSession();
 		Transaction transaction = session.beginTransaction();
 		Address address = find(id);
 		session.delete(address);
 		transaction.commit();
+		this.closeSession();
 		return true;
 	}
 
 	@Override
 	public boolean update(Address obj) {
+		this.openSession();
 		Transaction transaction = session.beginTransaction();
 		session.saveOrUpdate(obj);
 		transaction.commit();
+		this.closeSession();
 		return true;
 	}
 
 	@Override
 	public Address find(long id) {
+		Transaction transaction = session.beginTransaction();
 		Address address = (Address)session.load(Address.class, new Integer((int)id));
+		transaction.commit();
 		return address;
 	}
 

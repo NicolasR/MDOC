@@ -11,18 +11,9 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 public class DAOContact extends DAO<Contact> {
-	Session session = null;
 	
 	public DAOContact(Connection conn) {
 		super(conn);
-		try
-		{
-			SessionFactory sessionFactory =
-				new Configuration().configure().buildSessionFactory();
-			session = sessionFactory.openSession();
-		} catch(Exception e){
-			System.out.println(e.getMessage());
-		}
 	}
 
 	@Override
@@ -41,9 +32,11 @@ public class DAOContact extends DAO<Contact> {
 			return false;
 		}
 		return true;*/
+		this.openSession();
 		Transaction transaction = session.beginTransaction();
 		session.save(contact);
 		transaction.commit();
+		this.closeSession();
 		return true;
 	}
 
@@ -109,5 +102,4 @@ public class DAOContact extends DAO<Contact> {
 		}*/
 		return null;
 	}
-
 }

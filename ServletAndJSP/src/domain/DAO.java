@@ -2,8 +2,25 @@ package domain;
 
 import java.sql.Connection;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
 public abstract class DAO<T> {
+	
 	protected Connection connect = null;
+	protected Session session = null;
+	protected SessionFactory sessionFactory = null;
+	
+	protected void openSession()
+	{
+		this.session = sessionFactory.openSession();		
+	}
+	
+	protected void closeSession()
+	{
+		this.session.close();
+	}
     
     /**
      * Constructeur
@@ -11,6 +28,13 @@ public abstract class DAO<T> {
      */
     public DAO(Connection conn){
             this.connect = conn;
+            try
+    		{
+    			sessionFactory =
+    				new Configuration().configure().buildSessionFactory();
+    		} catch(Exception e){
+    			System.out.println(e.getMessage());
+    		}
     }
     
     /**
