@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 1 d?c. 2010 09:34:50 by Hibernate Tools 3.4.0.Beta1 -->
+<!-- Generated 7 d?c. 2010 14:03:31 by Hibernate Tools 3.4.0.Beta1 -->
 <hibernate-mapping>
     <class name="domain.ContactGroup" table="CONTACTGROUP">
         <id name="groupId" type="java.lang.Integer">
@@ -11,12 +11,11 @@
         <property name="groupName" type="java.lang.String">
             <column name="GROUPNAME" />
         </property>
-        <list name="contacts" inverse="false" table="CONTACT" lazy="true">
+        <set name="contacts" table="GROUPS_CONTACTS_LINK" lazy="true">
             <key>
                 <column name="GROUPID" />
             </key>
-            <list-index></list-index>
-            <one-to-many class="domain.Contact" />
-        </list>
+            <many-to-many class="domain.Contact" column="ID" />
+        </set>
     </class>
 </hibernate-mapping>

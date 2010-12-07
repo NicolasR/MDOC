@@ -2,17 +2,21 @@ package domain;
 
 import java.sql.Connection;
 
+import org.hibernate.Transaction;
+
 public class DAOPhoneNumber extends DAO<PhoneNumber> {
 
 	public DAOPhoneNumber(Connection conn) {
 		super(conn);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public boolean create(PhoneNumber obj) {
-		// TODO Auto-generated method stub
-		return false;
+		Transaction transaction = HibernateUtil.currentSession().beginTransaction();
+		HibernateUtil.currentSession().save(obj);
+		transaction.commit();
+		HibernateUtil.closeSession();
+		return true;
 	}
 
 	@Override

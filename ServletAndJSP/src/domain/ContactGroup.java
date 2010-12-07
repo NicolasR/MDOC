@@ -1,12 +1,12 @@
 package domain;
 
-import java.util.ArrayList;
+import java.util.Set;
 
 public class ContactGroup {
 	
 	private Integer groupId;
 	private String groupName;
-	private ArrayList<Contact> contacts;
+	private Set<Contact> contacts;
 	
 	
 	public ContactGroup() {
@@ -29,10 +29,10 @@ public class ContactGroup {
 	public void setGroupName(String groupName) {
 		this.groupName = groupName;
 	}
-	public ArrayList<Contact> getContacts() {
+	public Set<Contact> getContacts() {
 		return contacts;
 	}
-	public void setContacts(ArrayList<Contact> contacts) {
+	public void setContacts(Set<Contact> contacts) {
 		this.contacts = contacts;
 	}
 	

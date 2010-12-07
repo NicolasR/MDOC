@@ -1,7 +1,7 @@
 package mdoc.tp1;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashSet;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -82,7 +82,7 @@ public class NewContact extends HttpServlet {
 		address.setStreet(request.getParameter("street"));
 		address.setCountry(request.getParameter("country"));
 		address.setZip(request.getParameter("zip"));
-		daoAddress.create(address);
+		//daoAddress.create(address);
 		
 		DAOContact daoContact = new DAOContact(null);
 		String firstName = request.getParameter("firstName");
@@ -100,9 +100,11 @@ public class NewContact extends HttpServlet {
 		String phoneNumber = request.getParameter("phoneNumber");
 		newphoneNumber.setPhoneKind(phoneKind);
 		newphoneNumber.setPhoneNumber(phoneNumber);
-		ArrayList<PhoneNumber> listNumbers = new ArrayList<PhoneNumber>();
+		newphoneNumber.setContact(contact);
+		//daophonenumber.create(newphoneNumber);
+		HashSet<PhoneNumber> listNumbers = new HashSet<PhoneNumber>();
 		listNumbers.add(newphoneNumber);
-		//contact.setPhones(listNumbers);
+		contact.setPhones(listNumbers);
 		daoContact.create(contact);
 	}
 

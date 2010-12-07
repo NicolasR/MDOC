@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 1 d?c. 2010 09:34:50 by Hibernate Tools 3.4.0.Beta1 -->
+<!-- Generated 7 d?c. 2010 14:03:31 by Hibernate Tools 3.4.0.Beta1 -->
 <hibernate-mapping>
     <class name="domain.Contact" table="CONTACT">
         <id name="id" type="long">
@@ -17,22 +17,20 @@
         <property name="email" type="java.lang.String">
             <column name="EMAIL" />
         </property>
-        <many-to-one name="address" class="domain.Address" fetch="join">
+        <many-to-one name="address" class="domain.Address" fetch="join" cascade="save-update">
             <column name="ADDRESS" />
         </many-to-one>
-        <list name="phones" inverse="true" table="PHONENUMBER" lazy="true">
+        <set name="phones" table="PHONENUMBER" lazy="true" inverse="true" cascade="save-update">
             <key>
                 <column name="ID" />
             </key>
-            <list-index></list-index>
             <one-to-many class="domain.PhoneNumber" />
-        </list>
-        <list name="books" inverse="false" table="CONTACTGROUP" lazy="true">
+        </set>
+        <set name="groups" table="GROUPS_CONTACTS_LINK" inverse="true" lazy="true">
             <key>
                 <column name="ID" />
             </key>
-            <list-index></list-index>
-            <one-to-many class="domain.ContactGroup" />
-        </list>
+            <many-to-many class="domain.ContactGroup" column="GROUPID"/>
+        </set>
     </class>
 </hibernate-mapping>

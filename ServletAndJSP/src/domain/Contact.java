@@ -1,8 +1,6 @@
 package domain;
 
-import java.util.ArrayList;
-
-import org.hibernate.mapping.List;
+import java.util.Set;
 
 public class Contact {
 	private String firstName;
@@ -10,25 +8,25 @@ public class Contact {
 	private String email;
 	private long id;
 	private Address address;
-	private List phones;
-	private ArrayList<ContactGroup> books;
+	private Set<PhoneNumber> phones;
+	private Set<ContactGroup> groups;
 	
 	
 	
-	public List getPhones() {
+	public Set<PhoneNumber> getPhones() {
 		return phones;
 	}
 
-	public void setPhones( List phones) {
+	public void setPhones(Set<PhoneNumber> phones) {
 		this.phones = phones;
 	}
 
-	public ArrayList<ContactGroup> getBooks() {
-		return books;
+	public Set<ContactGroup> getGroups() {
+		return groups;
 	}
 
-	public void setBooks(ArrayList<ContactGroup> books) {
-		this.books = books;
+	public void setGroups(Set<ContactGroup> groups) {
+		this.groups = groups;
 	}
 
 	public Address getAddress() {
