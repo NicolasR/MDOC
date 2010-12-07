@@ -13,6 +13,7 @@ import domain.Contact;
 import domain.DAOAddress;
 import domain.DAOContact;
 import domain.DAOPhoneNumber;
+import domain.Entreprise;
 import domain.PhoneNumber;
 
 /**
@@ -94,18 +95,36 @@ public class NewContact extends HttpServlet {
 		contact.setLastName(lastName);
 		contact.setFirstName(email);
 		
-		DAOPhoneNumber daophonenumber = new DAOPhoneNumber(null);
 		PhoneNumber newphoneNumber = new PhoneNumber();
 		String phoneKind = request.getParameter("phoneKind");
 		String phoneNumber = request.getParameter("phoneNumber");
 		newphoneNumber.setPhoneKind(phoneKind);
 		newphoneNumber.setPhoneNumber(phoneNumber);
 		newphoneNumber.setContact(contact);
-		//daophonenumber.create(newphoneNumber);
+
 		HashSet<PhoneNumber> listNumbers = new HashSet<PhoneNumber>();
 		listNumbers.add(newphoneNumber);
 		contact.setPhones(listNumbers);
-		daoContact.create(contact);
+		
+		Entreprise entreprise = new Entreprise();
+		String isEntreprise = request.getParameter("isEntreprise");
+		String numSiret = request.getParameter("numSiret");
+		if (isEntreprise != null && isEntreprise.equals("on"))
+		{
+			entreprise.setAddress(address);
+			entreprise.setEmail(email);
+			entreprise.setFirstName(firstName);
+			entreprise.setLastName(lastName);
+			entreprise.setPhones(listNumbers);
+			entreprise.setNumSiret(Integer.parseInt(numSiret));
+			daoContact.create(entreprise);
+		}
+		else
+			daoContact.create(contact);
+		
+		
+		
+			
 	}
 
 }

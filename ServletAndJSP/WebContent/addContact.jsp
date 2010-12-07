@@ -39,6 +39,12 @@ Phone number : <input type="text" name="phoneNumber" size="25">
 <br />
 </fieldset>
 <fieldset>
+isEntreprise: <input type="checkbox" name="isEntreprise">
+</fieldset>
+<fieldset>
+Siret number: <input type="text" name="numSiret">
+</fieldset>
+<fieldset>
 <p>
 Choisissez les groupes :<br />
 <%
