@@ -9,11 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.AbstractDAOFactory;
+import dao.DAO;
 import domain.Address;
 import domain.Contact;
 import domain.ContactGroup;
-import domain.DAOContact;
-import domain.DAOContactGroup;
 import domain.Entreprise;
 import domain.PhoneNumber;
 
@@ -22,80 +22,84 @@ import domain.PhoneNumber;
  */
 public class NewContact extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public NewContact() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public NewContact() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		try {
-//
-//		      //Register the JDBC driver for MySQL.
-//		      Class.forName("com.mysql.jdbc.Driver");
-//
-//		      //Define URL of database server for
-//		      // database named mysql on the localhost
-//		      // with the default port number 3306.
-//		      String url =
-//		            "jdbc:mysql://localhost:3306/mdoc";
-//
-//		      //Get a connection to the database for a
-//		      // user named root with a blank password.
-//		      // This user is the default administrator
-//		      // having full privileges to do anything.
-//		      Connection con =
-//		                     DriverManager.getConnection(
-//		                                 url,"root", "root");
-//
-//		      //Display URL and connection information
-//		      System.out.println("URL: " + url);
-//		      System.out.println("Connection: " + con);
-//		      
-//		      DAOContact daoContact = new DAOContact(con);
-//		      Contact contact = new Contact(request.getParameter("firstName"), 
-//		    		  request.getParameter("lastName"),
-//		    		  request.getParameter("email"),
-//		    		  Integer.parseInt(request.getParameter("id")));
-//		      
-//		      daoContact.create(contact);
-//		      con.close();
-//		}
-//		catch (Exception e) {
-//			e.printStackTrace();
-//		}
-		
-//		DAOAddress daoAddress = new DAOAddress(null);
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		// try {
+		//
+		// //Register the JDBC driver for MySQL.
+		// Class.forName("com.mysql.jdbc.Driver");
+		//
+		// //Define URL of database server for
+		// // database named mysql on the localhost
+		// // with the default port number 3306.
+		// String url =
+		// "jdbc:mysql://localhost:3306/mdoc";
+		//
+		// //Get a connection to the database for a
+		// // user named root with a blank password.
+		// // This user is the default administrator
+		// // having full privileges to do anything.
+		// Connection con =
+		// DriverManager.getConnection(
+		// url,"root", "root");
+		//
+		// //Display URL and connection information
+		// System.out.println("URL: " + url);
+		// System.out.println("Connection: " + con);
+		//
+		// DAOContact daoContact = new DAOContact(con);
+		// Contact contact = new Contact(request.getParameter("firstName"),
+		// request.getParameter("lastName"),
+		// request.getParameter("email"),
+		// Integer.parseInt(request.getParameter("id")));
+		//
+		// daoContact.create(contact);
+		// con.close();
+		// }
+		// catch (Exception e) {
+		// e.printStackTrace();
+		// }
+		AbstractDAOFactory adf = AbstractDAOFactory
+				.getFactory(AbstractDAOFactory.HIBERNATE_DAO_FACTORY);
+
 		Address address = new Address();
 		address.setCity(request.getParameter("city"));
 		address.setStreet(request.getParameter("street"));
 		address.setCountry(request.getParameter("country"));
 		address.setZip(request.getParameter("zip"));
-		//daoAddress.create(address);
-		
-		DAOContact daoContact = new DAOContact(null);
+
+		DAO<Contact> daoContact = adf.getDAOContact();
 		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
 		String email = request.getParameter("email");
-		Contact contact = new Contact(firstName, lastName, email);
+		Contact contact = new Contact();
 		contact.setAddress(address);
 		contact.setFirstName(firstName);
 		contact.setLastName(lastName);
 		contact.setFirstName(email);
-		
+
 		PhoneNumber newphoneNumber = new PhoneNumber();
 		String phoneKind = request.getParameter("phoneKind");
 		String phoneNumber = request.getParameter("phoneNumber");
@@ -106,26 +110,23 @@ public class NewContact extends HttpServlet {
 		HashSet<PhoneNumber> listNumbers = new HashSet<PhoneNumber>();
 		listNumbers.add(newphoneNumber);
 		contact.setPhones(listNumbers);
-		
-		DAOContactGroup daoContactGroup = new DAOContactGroup(null);
+
+		DAO<ContactGroup> daoContactGroup = adf.getDAOContactGroup();
 		List<ContactGroup> groups = daoContactGroup.getAll();
 		HashSet<ContactGroup> set = new HashSet<ContactGroup>();
-		for(ContactGroup group : groups)
-		{
+		for (ContactGroup group : groups) {
 			String groupString = request.getParameter(group.getGroupName());
-			if ( groupString != null && groupString.equals("on") )
-			{
+			if (groupString != null && groupString.equals("on")) {
 				group.getContacts().add(contact);
 				set.add(group);
 			}
 		}
 		contact.setGroups(set);
-		
+
 		Entreprise entreprise = new Entreprise();
 		String isEntreprise = request.getParameter("isEntreprise");
 		String numSiret = request.getParameter("numSiret");
-		if (isEntreprise != null && isEntreprise.equals("on"))
-		{
+		if (isEntreprise != null && isEntreprise.equals("on")) {
 			entreprise.setAddress(address);
 			entreprise.setEmail(email);
 			entreprise.setFirstName(firstName);
@@ -133,9 +134,7 @@ public class NewContact extends HttpServlet {
 			entreprise.setPhones(listNumbers);
 			entreprise.setNumSiret(Integer.parseInt(numSiret));
 			daoContact.create(entreprise);
-		}
-		else
-		{
+		} else {
 			daoContact.create(contact);
 		}
 	}

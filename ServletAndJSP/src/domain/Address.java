@@ -73,19 +73,4 @@ public class Address {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-
-
-
-	public Address(/*Long id, */String street, String city, String zip,
-			String country) {
-		super();
-		//this.id = id;
-		this.street = street;
-		this.city = city;
-		this.zip = zip;
-		this.country = country;
-	}
-	
-	
-
 }

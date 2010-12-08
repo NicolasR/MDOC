@@ -40,14 +40,6 @@ public class Contact {
 	public Contact() {
 	}
 	
-	public Contact(String firstName, String lastName, String email/*, long id*/) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		//this.id = id;
-	}
-	
 	public String getFirstName() {
 		return firstName;
 	}

@@ -1,6 +1,6 @@
-
 <%@page import="domain.ContactGroup"%>
-<%@page import="domain.DAOContactGroup"%>
+<%@page import="dao.DAO"%>
+<%@page import="dao.AbstractDAOFactory"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -44,7 +44,9 @@ Siret number: <input type="text" name="numSiret">
 <fieldset>
 Choisissez les groupes :<br />
 <%
-DAOContactGroup daoContactGroup = new DAOContactGroup(null);
+AbstractDAOFactory adf = AbstractDAOFactory
+	.getFactory(AbstractDAOFactory.HIBERNATE_DAO_FACTORY);
+DAO<ContactGroup> daoContactGroup = adf.getDAOContactGroup();
 for(ContactGroup group : daoContactGroup.getAll())
 {
 	%>

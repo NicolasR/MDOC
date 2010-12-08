@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.DAOContact;
 import domain.Contact;
-import domain.DAOContact;
 
 /**
  * Servlet implementation class UpdateContact
@@ -67,7 +67,10 @@ public class UpdateContact extends HttpServlet {
 	      String lastName = request.getParameter("lastName");
 	      String email = request.getParameter("email");
 	      long id = Long.parseLong(request.getParameter("id"));
-	      Contact contact = new Contact(firstName, lastName, email);
+	      Contact contact = new Contact();
+	      contact.setFirstName(firstName);
+	      contact.setLastName(lastName);
+	      contact.setEmail(email);
 	      daoContact.update(contact);
 	      con.close();
 		} catch (SQLException e) {

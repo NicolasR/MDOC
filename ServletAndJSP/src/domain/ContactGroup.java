@@ -13,11 +13,6 @@ public class ContactGroup {
 	public ContactGroup() {
 	}
 	
-	public ContactGroup(/*Long groupId, */String groupName) {
-		super();
-		//this.groupId = groupId;
-		this.groupName = groupName;
-	}
 	public Long getGroupId() {
 		return groupId;
 	}
