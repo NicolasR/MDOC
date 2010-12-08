@@ -9,6 +9,7 @@ import org.hibernate.Transaction;
 import util.HibernateUtil;
 
 import domain.Contact;
+import domain.PhoneNumber;
 
 public class DAOContact extends DAO<Contact> {
 	
@@ -52,6 +53,9 @@ public class DAOContact extends DAO<Contact> {
 		}*/
 		Contact contact = find(id);
 		Transaction transaction = HibernateUtil.currentSession().beginTransaction();
+		for (PhoneNumber phone : contact.getPhones()) {
+			phone.setContact(null);
+		}
 		HibernateUtil.currentSession().delete(contact);
 		transaction.commit();
 		
