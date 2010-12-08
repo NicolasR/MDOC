@@ -4,7 +4,7 @@
 <!-- Generated 7 d?c. 2010 14:03:31 by Hibernate Tools 3.4.0.Beta1 -->
 <hibernate-mapping>
     <class name="domain.ContactGroup" table="CONTACTGROUP">
-        <id name="groupId" type="java.lang.Integer">
+        <id name="groupId" type="java.lang.Long">
             <column name="GROUPID" />
             <generator class="increment" />
         </id>

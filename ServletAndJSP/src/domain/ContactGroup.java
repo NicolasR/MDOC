@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class ContactGroup {
 	
-	private Integer groupId;
+	private Long groupId;
 	private String groupName;
 	private Set<Contact> contacts;
 	
@@ -13,16 +13,16 @@ public class ContactGroup {
 	public ContactGroup() {
 	}
 	
-	public ContactGroup(Integer groupId, String groupName) {
+	public ContactGroup(/*Long groupId, */String groupName) {
 		super();
-		this.groupId = groupId;
+		//this.groupId = groupId;
 		this.groupName = groupName;
 		this.contacts = new HashSet<Contact>();
 	}
-	public Integer getGroupId() {
+	public Long getGroupId() {
 		return groupId;
 	}
-	public void setGroupId(Integer groupId) {
+	public void setGroupId(Long groupId) {
 		this.groupId = groupId;
 	}
 	public String getGroupName() {

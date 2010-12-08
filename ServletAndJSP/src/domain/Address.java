@@ -2,7 +2,7 @@ package domain;
 
 public class Address {
 	
-	private Integer id;
+	private Long id;
 	private String street;
 	private String city;
 	private String zip;
@@ -16,13 +16,13 @@ public class Address {
 
 
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
 
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -76,10 +76,10 @@ public class Address {
 
 
 
-	public Address(Integer id, String street, String city, String zip,
+	public Address(/*Long id, */String street, String city, String zip,
 			String country) {
 		super();
-		this.id = id;
+		//this.id = id;
 		this.street = street;
 		this.city = city;
 		this.zip = zip;

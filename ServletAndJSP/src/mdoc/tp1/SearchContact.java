@@ -69,7 +69,7 @@ public class SearchContact extends HttpServlet {
 		// con.close();
 
 		DAOContact daoContact = new DAOContact(null);
-		int id = Integer.parseInt(request.getParameter("id"));
+		long id = Long.parseLong(request.getParameter("id"));
 		Contact contact = daoContact.find(id);
 
 		response.setContentType("text/html");

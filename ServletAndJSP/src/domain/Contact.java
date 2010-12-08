@@ -6,7 +6,7 @@ public class Contact {
 	private String firstName;
 	private String lastName;
 	private String email;
-	private long id;
+	private Long id;
 	private Address address;
 	private Set<PhoneNumber> phones;
 	private Set<ContactGroup> groups;
@@ -66,10 +66,10 @@ public class Contact {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	

@@ -2,14 +2,14 @@ package domain;
 
 public class PhoneNumber {
 	
-	private Integer id;
+	private Long id;
 	private String phoneKind;
 	private String phoneNumber;
 	private Contact contact;
 	
-	public PhoneNumber(Integer id, String phoneKind, String phoneNumber) {
+	public PhoneNumber(/*Long id, */String phoneKind, String phoneNumber) {
 		super();
-		this.id = id;
+		//this.id = id;
 		this.phoneKind = phoneKind;
 		this.phoneNumber = phoneNumber;
 	}
@@ -17,11 +17,11 @@ public class PhoneNumber {
 	public PhoneNumber() {
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

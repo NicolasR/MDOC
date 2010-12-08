@@ -41,7 +41,7 @@ public class DAOAddress extends DAO<Address> {
 	@Override
 	public Address find(long id) {
 		Transaction transaction = HibernateUtil.currentSession().beginTransaction();
-		Address address = (Address)HibernateUtil.currentSession().load(Address.class, new Integer((int)id));
+		Address address = (Address)HibernateUtil.currentSession().get(Address.class, new Integer((int)id));
 		transaction.commit();
 		HibernateUtil.closeSession();
 		return address;

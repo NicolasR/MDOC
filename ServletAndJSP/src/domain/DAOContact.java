@@ -104,7 +104,7 @@ public class DAOContact extends DAO<Contact> {
 			return null;
 		}*/
 		Transaction transaction = HibernateUtil.currentSession().beginTransaction();
-		Contact contact = (Contact)HibernateUtil.currentSession().load(Contact.class, new Long((long)id));
+		Contact contact = (Contact)HibernateUtil.currentSession().get(Contact.class, id);
 		transaction.commit();
 		HibernateUtil.closeSession();
 		return contact;

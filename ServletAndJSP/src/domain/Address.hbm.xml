@@ -4,7 +4,7 @@
 <!-- Generated 7 d?c. 2010 14:03:31 by Hibernate Tools 3.4.0.Beta1 -->
 <hibernate-mapping>
     <class name="domain.Address" table="ADDRESS">
-        <id name="id" type="java.lang.Integer">
+        <id name="id" type="java.lang.Long">
             <column name="ID" />
             <generator class="increment" />
         </id>
