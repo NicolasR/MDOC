@@ -9,6 +9,7 @@ import org.hibernate.Transaction;
 import util.HibernateUtil;
 
 import domain.Contact;
+import domain.ContactGroup;
 import domain.PhoneNumber;
 
 public class DAOContact extends DAO<Contact> {
@@ -53,9 +54,20 @@ public class DAOContact extends DAO<Contact> {
 		}*/
 		Contact contact = find(id);
 		Transaction transaction = HibernateUtil.currentSession().beginTransaction();
+		
+		// Suppression de la reference du contact dans tous ses numéros de téléphone :
+		// Cela empeche Hibernate de tenter de re-sauvegarder le contact (par cascade) alors qu'il est supprimé
 		for (PhoneNumber phone : contact.getPhones()) {
 			phone.setContact(null);
 		}
+		
+		// Suppression de la reference du contact dans tous ses groupes :
+		// Cela empeche Hibernate de tenter de re-sauvegarder le contact (par cascade) alors qu'il est supprimé
+		for (ContactGroup group : contact.getGroups())
+		{
+			group.getContacts().remove(contact);
+		}
+		
 		HibernateUtil.currentSession().delete(contact);
 		transaction.commit();
 		
