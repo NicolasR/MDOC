@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" media="screen" type="text/css" title="Design" href="design.css" />
 <title>Accueil</title>
 </head>
 <body>

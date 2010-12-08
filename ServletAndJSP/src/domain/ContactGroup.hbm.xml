@@ -11,7 +11,7 @@
         <property name="groupName" type="java.lang.String">
             <column name="GROUPNAME" />
         </property>
-        <set name="contacts" table="GROUPS_CONTACTS_LINK" lazy="true">
+        <set name="contacts" table="GROUPS_CONTACTS_LINK" lazy="true" cascade="save-update">
             <key>
                 <column name="GROUPID" />
             </key>

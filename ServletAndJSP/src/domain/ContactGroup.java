@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class ContactGroup {
@@ -16,6 +17,7 @@ public class ContactGroup {
 		super();
 		this.groupId = groupId;
 		this.groupName = groupName;
+		this.contacts = new HashSet<Contact>();
 	}
 	public Integer getGroupId() {
 		return groupId;

@@ -13,7 +13,7 @@ public class DAOAddress extends DAO<Address> {
 	@Override
 	public boolean create(Address obj) {
 		Transaction transaction = HibernateUtil.currentSession().beginTransaction();
-		HibernateUtil.currentSession().save(obj);
+		HibernateUtil.currentSession().saveOrUpdate(obj);
 		transaction.commit();
 		HibernateUtil.closeSession();
 		return true;

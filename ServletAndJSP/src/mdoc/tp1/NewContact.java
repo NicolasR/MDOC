@@ -2,18 +2,22 @@ package mdoc.tp1;
 
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.hibernate.Query;
+import org.hibernate.Transaction;
+
 import domain.Address;
 import domain.Contact;
-import domain.DAOAddress;
+import domain.ContactGroup;
 import domain.DAOContact;
-import domain.DAOPhoneNumber;
 import domain.Entreprise;
+import domain.HibernateUtil;
 import domain.PhoneNumber;
 
 /**
@@ -77,7 +81,7 @@ public class NewContact extends HttpServlet {
 //			e.printStackTrace();
 //		}
 		
-		DAOAddress daoAddress = new DAOAddress(null);
+//		DAOAddress daoAddress = new DAOAddress(null);
 		Address address = new Address();
 		address.setCity(request.getParameter("city"));
 		address.setStreet(request.getParameter("street"));
@@ -106,6 +110,25 @@ public class NewContact extends HttpServlet {
 		listNumbers.add(newphoneNumber);
 		contact.setPhones(listNumbers);
 		
+		Transaction t = HibernateUtil.currentSession().beginTransaction();
+		
+		HashSet<ContactGroup> set = new HashSet<ContactGroup>();
+		Query query = HibernateUtil.currentSession().createQuery("from ContactGroup");
+		@SuppressWarnings(value="unchecked")
+		List<ContactGroup> list = query.list();
+		for(ContactGroup group : list)
+		{
+			String groupString = request.getParameter(group.getGroupName());
+			if ( groupString != null && groupString.equals("on") )
+			{
+				group.getContacts().add(contact);
+				set.add(group);
+			}
+		}
+		contact.setGroups(set);
+		t.commit();
+		HibernateUtil.closeSession();
+		
 		Entreprise entreprise = new Entreprise();
 		String isEntreprise = request.getParameter("isEntreprise");
 		String numSiret = request.getParameter("numSiret");
@@ -120,11 +143,9 @@ public class NewContact extends HttpServlet {
 			daoContact.create(entreprise);
 		}
 		else
+		{
 			daoContact.create(contact);
-		
-		
-		
-			
+		}
 	}
 
 }

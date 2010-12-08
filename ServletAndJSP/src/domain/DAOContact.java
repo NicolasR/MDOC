@@ -1,9 +1,6 @@
 package domain;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 import org.hibernate.Transaction;
 
@@ -30,7 +27,7 @@ public class DAOContact extends DAO<Contact> {
 		}
 		return true;*/
 		Transaction transaction = HibernateUtil.currentSession().beginTransaction();
-		HibernateUtil.currentSession().save(contact);
+		HibernateUtil.currentSession().saveOrUpdate(contact);
 		transaction.commit();
 		HibernateUtil.closeSession();
 		return true;
@@ -38,7 +35,7 @@ public class DAOContact extends DAO<Contact> {
 
 	@Override
 	public boolean delete(long id) {
-		try {
+		/*try {
 			Statement state = this.connect.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			String query = "DELETE FROM contact WHERE id = '"+id+"'";
 			state.execute(query);
@@ -46,13 +43,18 @@ public class DAOContact extends DAO<Contact> {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
-		}
-		
+		}*/
+		Transaction transaction = HibernateUtil.currentSession().beginTransaction();
+		Contact contact = find(id);
+		HibernateUtil.currentSession().delete(contact);
+		transaction.commit();
+		HibernateUtil.closeSession();
+		return true;
 	}
 
 	@Override
 	public boolean update(Contact obj) {
-		try {
+		/*try {
 			Statement state = this.connect.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			String firstName = obj.getFirstName();
 			String lastName = obj.getLastName();
@@ -67,7 +69,12 @@ public class DAOContact extends DAO<Contact> {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
-		}
+		}*/
+		Transaction transaction = HibernateUtil.currentSession().beginTransaction();
+		HibernateUtil.currentSession().saveOrUpdate(obj);
+		transaction.commit();
+		HibernateUtil.closeSession();
+		return true;
 	}
 
 	@Override
@@ -96,6 +103,10 @@ public class DAOContact extends DAO<Contact> {
 			e.printStackTrace();
 			return null;
 		}*/
-		return null;
+		Transaction transaction = HibernateUtil.currentSession().beginTransaction();
+		Contact contact = (Contact)HibernateUtil.currentSession().load(Contact.class, new Long((long)id));
+		transaction.commit();
+		HibernateUtil.closeSession();
+		return contact;
 	}
 }

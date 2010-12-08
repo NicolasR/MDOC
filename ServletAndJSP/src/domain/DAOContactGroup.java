@@ -14,7 +14,7 @@ public class DAOContactGroup extends DAO<ContactGroup> {
 	@Override
 	public boolean create(ContactGroup obj) {
 		Transaction transaction = HibernateUtil.currentSession().beginTransaction();
-		HibernateUtil.currentSession().save(obj);
+		HibernateUtil.currentSession().saveOrUpdate(obj);
 		transaction.commit();
 		HibernateUtil.closeSession();
 		return true;
