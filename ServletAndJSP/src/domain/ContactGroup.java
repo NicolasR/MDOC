@@ -17,7 +17,6 @@ public class ContactGroup {
 		super();
 		//this.groupId = groupId;
 		this.groupName = groupName;
-		this.contacts = new HashSet<Contact>();
 	}
 	public Long getGroupId() {
 		return groupId;
@@ -32,6 +31,10 @@ public class ContactGroup {
 		this.groupName = groupName;
 	}
 	public Set<Contact> getContacts() {
+		if (contacts == null)
+		{
+			contacts = new HashSet<Contact>();
+		}
 		return contacts;
 	}
 	public void setContacts(Set<Contact> contacts) {

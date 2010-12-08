@@ -7,7 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import domain.DAOAddress;
+import domain.Contact;
+import domain.DAOContact;
 
 /**
  * Servlet implementation class deleteContact
@@ -69,10 +70,15 @@ public class DeleteContact extends HttpServlet {
 			e.printStackTrace();
 		}*/
 		
-		DAOAddress daoAddress = new DAOAddress(null);
-		
-		int id = Integer.parseInt(request.getParameter("id"));
-		daoAddress.delete(id);
+		DAOContact daoContact = new DAOContact(null);
+		for(Contact c : daoContact.getAll())
+		{
+			String s = request.getParameter(c.getId().toString());
+			if ( s != null && s.equals("on") )
+			{
+				daoContact.delete(c.getId());
+			}
+		}
 	}
 
 }

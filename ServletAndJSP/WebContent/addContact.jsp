@@ -1,9 +1,6 @@
-<%@page import="domain.HibernateUtil"%>
+
 <%@page import="domain.ContactGroup"%>
-<%@page import="java.util.List"%>
-<%@page import="org.hibernate.Query"%>
-<%@page import="org.hibernate.Transaction"%>
-<%@page import="org.hibernate.Session"%>
+<%@page import="domain.DAOContactGroup"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -47,20 +44,14 @@ Siret number: <input type="text" name="numSiret">
 <fieldset>
 Choisissez les groupes :<br />
 <%
-Transaction t = HibernateUtil.currentSession().beginTransaction();
-	
-Query query = HibernateUtil.currentSession().createQuery("from ContactGroup");
-@SuppressWarnings(value="unchecked")
-List<ContactGroup> list = query.list();
-for(ContactGroup group : list)
+DAOContactGroup daoContactGroup = new DAOContactGroup(null);
+for(ContactGroup group : daoContactGroup.getAll())
 {
 	%>
 	<input type="checkbox" name="<%=group.getGroupName()%>" id="<%=group.getGroupName()%>" /> 
 	<label for="<%=group.getGroupName()%>"><%=group.getGroupName()%></label><br />
 	<%
 }
-t.commit();
-HibernateUtil.closeSession();
 %>
 </fieldset>
 <input type="submit" value="Submit"> <input type="reset" value="Reset">

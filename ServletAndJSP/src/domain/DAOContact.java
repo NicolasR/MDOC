@@ -1,7 +1,9 @@
 package domain;
 
 import java.sql.Connection;
+import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Transaction;
 
 public class DAOContact extends DAO<Contact> {
@@ -29,7 +31,7 @@ public class DAOContact extends DAO<Contact> {
 		Transaction transaction = HibernateUtil.currentSession().beginTransaction();
 		HibernateUtil.currentSession().saveOrUpdate(contact);
 		transaction.commit();
-		HibernateUtil.closeSession();
+		
 		return true;
 	}
 
@@ -44,11 +46,11 @@ public class DAOContact extends DAO<Contact> {
 			e.printStackTrace();
 			return false;
 		}*/
-		Transaction transaction = HibernateUtil.currentSession().beginTransaction();
 		Contact contact = find(id);
+		Transaction transaction = HibernateUtil.currentSession().beginTransaction();
 		HibernateUtil.currentSession().delete(contact);
 		transaction.commit();
-		HibernateUtil.closeSession();
+		
 		return true;
 	}
 
@@ -73,7 +75,7 @@ public class DAOContact extends DAO<Contact> {
 		Transaction transaction = HibernateUtil.currentSession().beginTransaction();
 		HibernateUtil.currentSession().saveOrUpdate(obj);
 		transaction.commit();
-		HibernateUtil.closeSession();
+		
 		return true;
 	}
 
@@ -106,7 +108,19 @@ public class DAOContact extends DAO<Contact> {
 		Transaction transaction = HibernateUtil.currentSession().beginTransaction();
 		Contact contact = (Contact)HibernateUtil.currentSession().get(Contact.class, id);
 		transaction.commit();
-		HibernateUtil.closeSession();
+		
 		return contact;
+	}
+
+	@Override
+	public List<Contact> getAll() {
+		Transaction t = HibernateUtil.currentSession().beginTransaction();
+		
+		Query query = HibernateUtil.currentSession().createQuery("from Contact");
+		@SuppressWarnings(value="unchecked")
+		List<Contact> list = query.list();
+		t.commit();
+		
+		return list;
 	}
 }

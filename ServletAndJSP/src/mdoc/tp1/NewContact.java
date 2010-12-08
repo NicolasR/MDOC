@@ -9,15 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.Query;
-import org.hibernate.Transaction;
-
 import domain.Address;
 import domain.Contact;
 import domain.ContactGroup;
 import domain.DAOContact;
+import domain.DAOContactGroup;
 import domain.Entreprise;
-import domain.HibernateUtil;
 import domain.PhoneNumber;
 
 /**
@@ -110,13 +107,10 @@ public class NewContact extends HttpServlet {
 		listNumbers.add(newphoneNumber);
 		contact.setPhones(listNumbers);
 		
-		Transaction t = HibernateUtil.currentSession().beginTransaction();
-		
+		DAOContactGroup daoContactGroup = new DAOContactGroup(null);
+		List<ContactGroup> groups = daoContactGroup.getAll();
 		HashSet<ContactGroup> set = new HashSet<ContactGroup>();
-		Query query = HibernateUtil.currentSession().createQuery("from ContactGroup");
-		@SuppressWarnings(value="unchecked")
-		List<ContactGroup> list = query.list();
-		for(ContactGroup group : list)
+		for(ContactGroup group : groups)
 		{
 			String groupString = request.getParameter(group.getGroupName());
 			if ( groupString != null && groupString.equals("on") )
@@ -126,8 +120,6 @@ public class NewContact extends HttpServlet {
 			}
 		}
 		contact.setGroups(set);
-		t.commit();
-		HibernateUtil.closeSession();
 		
 		Entreprise entreprise = new Entreprise();
 		String isEntreprise = request.getParameter("isEntreprise");

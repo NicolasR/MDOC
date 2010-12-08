@@ -1,6 +1,7 @@
 package domain;
 
 import java.sql.Connection;
+import java.util.List;
 
 public abstract class DAO<T> {
 
@@ -46,5 +47,7 @@ public abstract class DAO<T> {
 	 * @return
 	 */
 	public abstract T find(long id);
+	
+	public abstract List<T> getAll();
 
 }
