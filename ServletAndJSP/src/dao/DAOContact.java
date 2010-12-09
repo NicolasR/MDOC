@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Order;
 
 import util.HibernateUtil;
 
@@ -136,9 +137,13 @@ public class DAOContact extends DAO<Contact> {
 	public List<Contact> getAll() {
 		Transaction t = HibernateUtil.currentSession().beginTransaction();
 		
-		Query query = HibernateUtil.currentSession().createQuery("from Contact");
+//		Query query = HibernateUtil.currentSession().createQuery("from Contact");
+//		@SuppressWarnings(value="unchecked")
+//		List<Contact> list = query.list();
+		
 		@SuppressWarnings(value="unchecked")
-		List<Contact> list = query.list();
+		List<Contact> list = HibernateUtil.currentSession().createCriteria(Contact.class).addOrder(Order.asc("lastName")).list();
+		
 		t.commit();
 		
 		return list;

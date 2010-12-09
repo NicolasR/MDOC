@@ -98,7 +98,7 @@ public class NewContact extends HttpServlet {
 		contact.setAddress(address);
 		contact.setFirstName(firstName);
 		contact.setLastName(lastName);
-		contact.setFirstName(email);
+		contact.setEmail(email);
 
 		PhoneNumber newphoneNumber = new PhoneNumber();
 		String phoneKind = request.getParameter("phoneKind");

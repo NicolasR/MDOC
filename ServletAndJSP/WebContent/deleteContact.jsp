@@ -8,6 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" media="screen" type="text/css" title="Design" href="design.css" />
 <title>Supprimer un contact</title>
 </head>
 <body>
@@ -17,13 +18,32 @@
 			.getFactory(AbstractDAOFactory.HIBERNATE_DAO_FACTORY);
 		
 		DAO<Contact> daoContact = adf.getDAOContact();
+		%>
+		<table>
+		<thead>
+		<tr>
+		<th>ID</th>
+		<th>Nom</th>
+		<th>Prénom</th>
+		</tr>
+		</thead>
+		<tbody>
+		<%
 		for(Contact c : daoContact.getAll())
 		{
 			%>
-			<input type="checkbox" name="<%=c.getId()%>" id="<%=c.getId()%>" /> 
-			<label for="<%=c.getId()%>"><%=c.getId()%></label><br />
+			<tr>
+			<td><input type="checkbox" name="<%=c.getId()%>" id="<%=c.getId()%>" />
+			<label for="<%=c.getId()%>"><%=c.getId()%></label></td>
+			<td><%=c.getLastName()%></td>
+			<td><%=c.getFirstName()%></td>
+			</tr>
 			<%
 		}
+		%>
+		</tbody>
+		</table>
+		<%
 		%>
 	<input type="submit" value="Submit"> <input type="reset" value="Reset">
 	</form>
