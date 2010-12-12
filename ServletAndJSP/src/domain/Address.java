@@ -5,14 +5,6 @@ package domain;
  * @author Nicolas RIGNAULT
  * Adresse des contacts
  */
-/**
- * @author Administrateur
- *
- */
-/**
- * @author Administrateur
- *
- */
 public class Address {
 	
 	/**
