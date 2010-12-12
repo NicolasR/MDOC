@@ -3,7 +3,6 @@ package dao;
 import java.sql.Connection;
 import java.util.List;
 
-import org.hibernate.Query;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 
@@ -13,12 +12,27 @@ import domain.Contact;
 import domain.ContactGroup;
 import domain.PhoneNumber;
 
+/**
+ * @author Charles DUFOUR
+ * @author Nicolas RIGNAULT
+ * DAO qui gère les contacts
+ */
 public class DAOContact extends DAO<Contact> {
 	
+	/**
+	 * Constructeur
+	 * @param conn la connexion à la base de données
+	 */
 	public DAOContact(Connection conn) {
 		super(conn);
 	}
 
+	/** (non-Javadoc)
+	 * @see dao.DAO#create(java.lang.Object)
+	 * Crée le contact dans la base de données
+	 * @param obj le contact à créer
+	 * @return le résultat de l'opération
+	 */
 	@Override
 	public boolean create(Contact contact) {
 		/*long id = contact.getId();
@@ -42,6 +56,12 @@ public class DAOContact extends DAO<Contact> {
 		return true;
 	}
 
+	/** (non-Javadoc)
+	 * @see dao.DAO#delete(long)
+	 * Supprime le contact ayant l'id associé de la base de données
+	 * @param id l'identifiant du contact à supprimer
+	 * @return le résultat de l'opération
+	 */
 	@Override
 	public boolean delete(long id) {
 		/*try {
@@ -75,6 +95,12 @@ public class DAOContact extends DAO<Contact> {
 		return true;
 	}
 
+	/** (non-Javadoc)
+	 * @see dao.DAO#update(java.lang.Object)
+	 * Met à jour le contact dans la base de données
+	 * @param obj le contact à mettre à jour
+	 * @return le résultat de l'opération
+	 */
 	@Override
 	public boolean update(Contact obj) {
 		/*try {
@@ -100,6 +126,12 @@ public class DAOContact extends DAO<Contact> {
 		return true;
 	}
 
+	/** (non-Javadoc)
+	 * @see dao.DAO#find(long)
+	 * Cherche le contact ayant l'id associé dans la base de données
+	 * @param id l'identifiant du contact
+	 * @return le contact associé à l'identifiant
+	 */
 	@Override
 	public Contact find(long id) {
 		/*try {
@@ -133,6 +165,11 @@ public class DAOContact extends DAO<Contact> {
 		return contact;
 	}
 
+	/** (non-Javadoc)
+	 * @see dao.DAO#getAll()
+	 * Renvoie tous les contacts se trouvant dans la base de données
+	 * @return la liste des contacts
+	 */
 	@Override
 	public List<Contact> getAll() {
 		Transaction t = HibernateUtil.currentSession().beginTransaction();
