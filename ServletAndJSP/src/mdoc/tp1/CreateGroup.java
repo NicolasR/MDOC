@@ -44,10 +44,21 @@ public class CreateGroup extends HttpServlet {
 				.getFactory(AbstractDAOFactory.HIBERNATE_DAO_FACTORY);
 		DAO<ContactGroup> daoContactGroup = adf.getDAOContactGroup();
 
-		ContactGroup contactGroup = new ContactGroup();
-		contactGroup.setGroupName(request.getParameter("newGroup"));
-		daoContactGroup.create(contactGroup);
-		request.getRequestDispatcher("accueil.jsp").forward(request, response);
+		boolean needToCreate = true;
+		for (ContactGroup group : daoContactGroup.getAll()) {
+			if (group.getGroupName().equals(request.getParameter("newGroup")))
+			{
+				needToCreate = false;
+				break;
+			}
+		}
+		if (needToCreate)
+		{
+			ContactGroup contactGroup = new ContactGroup();
+			contactGroup.setGroupName(request.getParameter("newGroup"));
+			daoContactGroup.create(contactGroup);
+		}
+		request.getRequestDispatcher("addContact.jsp").forward(request, response);
 	}
 
 }

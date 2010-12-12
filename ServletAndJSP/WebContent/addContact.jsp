@@ -1,66 +1,87 @@
 <%@page import="domain.ContactGroup"%>
 <%@page import="dao.DAO"%>
 <%@page import="dao.AbstractDAOFactory"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" media="screen" type="text/css" title="Design" href="design.css" />
 <title>Ajouter un contact</title>
 </head>
 <body>
+<script language="JavaScript">
+  function showhidefield()
+  {
+    if (document.getElementById("isEntreprise").checked)
+    {
+      document.getElementById("siret").style.display = "block";
+    }
+    else
+    {
+      document.getElementById("siret").style.display = "none";
+    }
+  }
+</script>
 <form method="post" action="NewContact">
 <fieldset>
-First Name : <input type="text" name="firstName" size="25">
+Prénom : <input type="text" name="firstName" size="25">
 <br />
-Last Name : <input type="text" name="lastName" size="25">
+Nom : <input type="text" name="lastName" size="25">
 <br />
 Email : <input type="text" name="email" size="25">
 </fieldset>
 <fieldset>
-Street : <input type="text" name="street" size="25">
+Rue : <input type="text" name="street" size="25">
 <br />
-City : <input type="text" name="city" size="25">
+Ville : <input type="text" name="city" size="25">
 <br />
-ZIP : <input type="text" name="zip" size="25">
+Code postale : <input type="text" name="zip" size="25">
 <br />
-Country : <input type="text" name="country" size="25">
-<br />
-</fieldset>
-<fieldset>
-Phone kind : <input type="text" name="phoneKind" size="25">
-<br />
-Phone number : <input type="text" name="phoneNumber" size="25">
+Pays : <input type="text" name="country" size="25">
 <br />
 </fieldset>
 <fieldset>
-isEntreprise: <input type="checkbox" name="isEntreprise">
+Type de téléphone : <input type="text" name="phoneKind" size="25">
+<br />
+Numéro de téléphone : <input type="text" name="phoneNumber" size="25">
+<br />
 </fieldset>
 <fieldset>
-Siret number: <input type="text" name="numSiret">
+Entreprise: <input type="checkbox" id="isEntreprise" name="isEntreprise" onclick="showhidefield()">
 </fieldset>
-<fieldset>
-Choisissez les groupes :<br />
+<fieldset id="siret" style="display:none;">
+Numéro SIRET: <input type="text" name="numSiret">
+</fieldset>
 <%
 AbstractDAOFactory adf = AbstractDAOFactory
 	.getFactory(AbstractDAOFactory.HIBERNATE_DAO_FACTORY);
 DAO<ContactGroup> daoContactGroup = adf.getDAOContactGroup();
-for(ContactGroup group : daoContactGroup.getAll())
+if (daoContactGroup.getAll().size() > 0)
 {
-	%>
-	<input type="checkbox" name="<%=group.getGroupName()%>" id="<%=group.getGroupName()%>" /> 
-	<label for="<%=group.getGroupName()%>"><%=group.getGroupName()%></label><br />
+	
+%>
+<fieldset>
+Choisissez les groupes :<br />
 	<%
-}
+	for(ContactGroup group : daoContactGroup.getAll())
+	{
+		%>
+		<input type="checkbox" name="<%=group.getGroupName()%>" id="<%=group.getGroupName()%>" /> 
+		<label for="<%=group.getGroupName()%>"><%=group.getGroupName()%></label><br />
+		<%
+	}
 %>
 </fieldset>
-<input type="submit" value="Submit"> <input type="reset" value="Reset">
+<%
+}
+%>
+<input type="submit" value="Ajouter"> <input type="reset" value="Effacer">
 </form>
 <form method="post" action="CreateGroup">
 <fieldset>
-Cr�er un nouveau groupe : <input type="text" name="newGroup" size="25"> <input type="submit" value="Submit">
+Créer un nouveau groupe : <input type="text" name="newGroup" size="25"> <input type="submit" value="Créer groupe">
 </fieldset>
 </form>
 </body>

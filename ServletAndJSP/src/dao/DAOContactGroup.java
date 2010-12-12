@@ -10,13 +10,28 @@ import util.HibernateUtil;
 
 import domain.ContactGroup;
 
+/**
+ * @author Charles DUFOUR
+ * @author Nicolas RIGNAULT
+ * DAO qui gère les groupes de contact
+ *
+ */
 public class DAOContactGroup extends DAO<ContactGroup> {
 
+	
+	/**
+	 * Initialise la connexion SQL
+	 * @param conn la connection à la base de données
+	 */
 	public DAOContactGroup(Connection conn) {
 		super(conn);
-		// TODO Auto-generated constructor stub
 	}
 
+	/** (non-Javadoc)
+	 * @see dao.DAO#create(java.lang.Object)
+	 * Crée le groupe
+	 * @param obj le groupe à ajouter dans la base de données
+	 */
 	@Override
 	public boolean create(ContactGroup obj) {
 		Transaction transaction = HibernateUtil.currentSession().beginTransaction();
@@ -43,6 +58,11 @@ public class DAOContactGroup extends DAO<ContactGroup> {
 		return null;
 	}
 
+	/** (non-Javadoc)
+	 * @see dao.DAO#getAll()
+	 * Renvoie tous les groupes se trouvant dans la base de données
+	 * @return la liste des groupes
+	 */
 	@Override
 	public List<ContactGroup> getAll() {
 		Transaction t = HibernateUtil.currentSession().beginTransaction();
