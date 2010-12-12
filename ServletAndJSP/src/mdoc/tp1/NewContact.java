@@ -84,33 +84,66 @@ public class NewContact extends HttpServlet {
 		AbstractDAOFactory adf = AbstractDAOFactory
 				.getFactory(AbstractDAOFactory.HIBERNATE_DAO_FACTORY);
 
+		/**
+		 * Définition de l'adresse
+		 */
 		Address address = new Address();
 		address.setCity(request.getParameter("city"));
 		address.setStreet(request.getParameter("street"));
 		address.setCountry(request.getParameter("country"));
 		address.setZip(request.getParameter("zip"));
 
-		DAO<Contact> daoContact = adf.getDAOContact();
+		/**
+		 * Récupération du nom, prénom et email
+		 */
 		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
 		String email = request.getParameter("email");
-		Contact contact = new Contact();
-		contact.setAddress(address);
-		contact.setFirstName(firstName);
-		contact.setLastName(lastName);
-		contact.setEmail(email);
-
+		
+		DAO<Contact> daoContact = adf.getDAOContact();
+		
+		/**
+		 * Définition des numéros de téléphone
+		 */
 		PhoneNumber newphoneNumber = new PhoneNumber();
 		String phoneKind = request.getParameter("phoneKind");
 		String phoneNumber = request.getParameter("phoneNumber");
 		newphoneNumber.setPhoneKind(phoneKind);
 		newphoneNumber.setPhoneNumber(phoneNumber);
-		newphoneNumber.setContact(contact);
-
+		
+		/**
+		 * Ajout d'une liste de numéros
+		 */
 		HashSet<PhoneNumber> listNumbers = new HashSet<PhoneNumber>();
 		listNumbers.add(newphoneNumber);
+		
+		/**
+		 * Définie si le contact est une entreprise ou non
+		 */
+		Contact contact;
+		String isEntreprise = request.getParameter("isEntreprise");
+		String numSiret = request.getParameter("numSiret");
+		if (isEntreprise != null && isEntreprise.equals("on")) {
+			contact = new Entreprise();
+			((Entreprise) contact).setNumSiret(Integer.parseInt(numSiret));
+			newphoneNumber.setContact(contact);
+		} else {
+			contact = new Contact();
+		}
+	
+		/**
+		 * Ajout des informations diverses
+		 */
+		contact.setAddress(address);
+		contact.setEmail(email);
+		contact.setFirstName(firstName);
+		contact.setLastName(lastName);
 		contact.setPhones(listNumbers);
-
+		contact.setPhones(listNumbers);
+		
+		/**
+		 * Ajout des groupes associés au contact
+		 */
 		DAO<ContactGroup> daoContactGroup = adf.getDAOContactGroup();
 		List<ContactGroup> groups = daoContactGroup.getAll();
 		HashSet<ContactGroup> set = new HashSet<ContactGroup>();
@@ -122,21 +155,11 @@ public class NewContact extends HttpServlet {
 			}
 		}
 		contact.setGroups(set);
-
-		Entreprise entreprise = new Entreprise();
-		String isEntreprise = request.getParameter("isEntreprise");
-		String numSiret = request.getParameter("numSiret");
-		if (isEntreprise != null && isEntreprise.equals("on")) {
-			entreprise.setAddress(address);
-			entreprise.setEmail(email);
-			entreprise.setFirstName(firstName);
-			entreprise.setLastName(lastName);
-			entreprise.setPhones(listNumbers);
-			entreprise.setNumSiret(Integer.parseInt(numSiret));
-			daoContact.create(entreprise);
-		} else {
-			daoContact.create(contact);
-		}
+		
+		/**
+		 * Création du contact
+		 */
+		daoContact.create(contact);
 	}
 
 }
