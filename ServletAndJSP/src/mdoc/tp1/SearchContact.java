@@ -69,29 +69,7 @@ public class SearchContact extends HttpServlet {
 		// daoContact.find((Long.parseLong((request.getParameter("id")))));
 		// con.close();
 
-		AbstractDAOFactory adf = AbstractDAOFactory
-		.getFactory(AbstractDAOFactory.HIBERNATE_DAO_FACTORY);
-		
-		DAO<Contact> daoContact = adf.getDAOContact();
-		long id = Long.parseLong(request.getParameter("id"));
-		Contact contact = daoContact.find(id);
-
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		out.println("<html><body>");
-		if (contact == null) {
-			out.println("<h1>Pas de contact avec cet id</h1>");
-		} else {
-			out.println("Nom: " + contact.getLastName() + "<br>");
-			out.println("Prenom: " + contact.getFirstName() + "<br>");
-			out.println("email: " + contact.getEmail() + "<br>");
-			String urlargs = "id=" + contact.getId() + "&firstname="
-					+ contact.getFirstName() + "&lastname="
-					+ contact.getLastName() + "&email=" + contact.getEmail();
-			out.println("<a href='updateContact.jsp?" + urlargs
-					+ "'>Modifier</a>");
-		}
-		out.println("</body></html>");
+		request.getRequestDispatcher("foundContact.jsp").forward(request, response);
 	}
 
 }
