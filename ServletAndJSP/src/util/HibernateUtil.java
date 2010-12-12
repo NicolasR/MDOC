@@ -5,7 +5,16 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+/**
+ * @author Charles DUFOUR
+ * @author Nicolas RIGNAULT
+ * Fonction de manipulation Hibernate
+ */
 public class HibernateUtil {
+	
+	/**
+	 * Factory
+	 */
 	private static final SessionFactory sessionFactory;
 
 	static {
@@ -19,8 +28,16 @@ public class HibernateUtil {
 		}
 	}
 
+	/**
+	 * Session
+	 */
 	private static Session session = null;
 
+	/**
+	 * Renvoie la session courante
+	 * @return la session courante
+	 * @throws HibernateException
+	 */
 	public static Session currentSession() throws HibernateException {
 		if (session == null) {
 			session = sessionFactory.openSession();
@@ -28,6 +45,10 @@ public class HibernateUtil {
 		return session;
 	}
 
+	/**
+	 * Ferme la session
+	 * @throws HibernateException
+	 */
 	public static void closeSession() throws HibernateException {
 		if (session != null)
 			session.close();
