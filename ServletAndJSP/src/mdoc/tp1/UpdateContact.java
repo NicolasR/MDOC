@@ -66,7 +66,6 @@ public class UpdateContact extends HttpServlet {
 	      String firstName = request.getParameter("firstName");
 	      String lastName = request.getParameter("lastName");
 	      String email = request.getParameter("email");
-	      long id = Long.parseLong(request.getParameter("id"));
 	      Contact contact = new Contact();
 	      contact.setFirstName(firstName);
 	      contact.setLastName(lastName);

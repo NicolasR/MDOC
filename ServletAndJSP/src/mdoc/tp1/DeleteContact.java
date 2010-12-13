@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.AbstractDAOFactory;
 import dao.DAO;
+import domain.Address;
 import domain.Contact;
 
 /**
@@ -67,9 +68,13 @@ public class DeleteContact extends HttpServlet {
 		AbstractDAOFactory adf = AbstractDAOFactory
 				.getFactory(AbstractDAOFactory.HIBERNATE_DAO_FACTORY);
 		DAO<Contact> daoContact = adf.getDAOContact();
+		DAO<Address> daoAddress = adf.getDAOAddress();
 		for (Contact c : daoContact.getAll()) {
 			String s = request.getParameter(c.getId().toString());
 			if (s != null && s.equals("on")) {
+				long addressId = c.getAddress().getId();
+				c.setAddress(null);
+				daoAddress.delete(addressId);
 				daoContact.delete(c.getId());
 			}
 		}

@@ -51,9 +51,9 @@ public class DAOAddress extends DAO<Address> {
 	 */
 	@Override
 	public boolean delete(long id) {
+		Address address = find(id);
 		Transaction transaction = HibernateUtil.currentSession()
 				.beginTransaction();
-		Address address = find(id);
 		HibernateUtil.currentSession().delete(address);
 		transaction.commit();
 
@@ -87,7 +87,7 @@ public class DAOAddress extends DAO<Address> {
 		Transaction transaction = HibernateUtil.currentSession()
 				.beginTransaction();
 		Address address = (Address) HibernateUtil.currentSession().get(
-				Address.class, new Integer((int) id));
+				Address.class, new Long(id));
 		transaction.commit();
 
 		return address;
