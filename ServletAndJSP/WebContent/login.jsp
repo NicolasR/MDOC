@@ -17,6 +17,6 @@ Hello M.
 <% }
 		else
 		%>
-<jsp:forward page="index.html" />
+<jsp:forward page="index.jsp" />
 </body>
 </html>

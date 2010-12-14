@@ -69,4 +69,14 @@
     <servlet-name>CreateGroup</servlet-name>
     <url-pattern>/CreateGroup</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CheckLogin</display-name>
+    <servlet-name>CheckLogin</servlet-name>
+    <servlet-class>mdoc.tp1.CheckLogin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CheckLogin</servlet-name>
+    <url-pattern>/CheckLogin</url-pattern>
+  </servlet-mapping>
 </web-app>
