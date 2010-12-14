@@ -110,6 +110,9 @@ public class NewContact extends HttpServlet {
 		ApplicationContext context =
 			WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 		DAO<Contact> daoContact = (DAO<Contact>)context.getBean("DAOContact");
+		Contact c1 = (Contact)context.getBean("contact1");
+
+		daoContact.create(c1);
 		///END
 		
 		/**

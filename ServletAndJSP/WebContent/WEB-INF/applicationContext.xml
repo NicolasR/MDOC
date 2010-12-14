@@ -5,4 +5,45 @@
 	
 	<bean id="DAO" class="dao.DAO" abstract="true" />
 	<bean id="DAOContact" class="dao.DAOContact" parent="DAO" />
+	
+	<!-- Informations sur le contact n°1 -->
+	<bean id="contact1" class="domain.Contact">
+		<property name="firstName" value="Jack"></property>
+		<property name="lastName" value="O'Neill"></property>
+		<property name="email" value="jack.oneill@sgc.com"></property>
+		<property name="address">
+			<ref bean="addressC1" />
+		</property>
+		<property name="phones">
+			<set>
+				<ref bean="phonenumberC1" />
+			</set>
+		</property>
+		<property name="groups">
+			<set>
+				<ref bean="contactgroupC1" />
+			</set>
+		</property>
+	</bean>
+	<bean id="addressC1" class="domain.Address">
+		<property name="street" value="2 Cheyenne Mountain street" />
+		<property name="city" value="Whashington DC" />
+		<property name="zip" value="12345" />
+		<property name="country" value="US" />
+	</bean>
+	<bean id="phonenumberC1" class="domain.PhoneNumber">
+		<property name="phoneKind" value="Portable" />
+		<property name="phoneNumber" value="06......" />
+		<property name="contact">
+			<ref bean="contact1" />
+		</property>
+	</bean>
+	<bean id="contactgroupC1" class="domain.ContactGroup">
+		<property name="groupName" value="SG1" />
+		<property name="contacts">
+			<set>
+				<ref bean="contact1" />
+			</set>
+		</property>
+	</bean>
 </beans>
