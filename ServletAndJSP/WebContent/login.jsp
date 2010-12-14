@@ -14,9 +14,12 @@
 Hello M.
 <%=request.getParameter("username")%>
 <jsp:forward page="accueil.jsp" />
-<% }
+<% 		}
 		else
+		{
 		%>
-<jsp:forward page="index.jsp" />
+			<jsp:forward page="index.jsp" />
+		<%
+		}%>
 </body>
 </html>
