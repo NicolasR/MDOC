@@ -9,8 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import dao.AbstractDAOFactory;
 import dao.DAO;
+import dao.DAOContact;
 import domain.Address;
 import domain.Contact;
 import domain.ContactGroup;
@@ -100,7 +104,13 @@ public class NewContact extends HttpServlet {
 		String lastName = request.getParameter("lastName");
 		String email = request.getParameter("email");
 		
-		DAO<Contact> daoContact = adf.getDAOContact();
+		///SPRING
+		//DAO<Contact> daoContact = adf.getDAOContact();
+		
+		ApplicationContext context =
+			WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		DAO<Contact> daoContact = (DAO<Contact>)context.getBean("DAOContact");
+		///END
 		
 		/**
 		 * Définition des numéros de téléphone

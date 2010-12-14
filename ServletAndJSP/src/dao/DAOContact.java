@@ -26,6 +26,11 @@ public class DAOContact extends DAO<Contact> {
 	public DAOContact(Connection conn) {
 		super(conn);
 	}
+	
+	public DAOContact()
+	{
+		super(null);
+	}
 
 	/** (non-Javadoc)
 	 * @see dao.DAO#create(java.lang.Object)
