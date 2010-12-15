@@ -105,14 +105,14 @@ public class NewContact extends HttpServlet {
 		String email = request.getParameter("email");
 		
 		///SPRING
-		//DAO<Contact> daoContact = adf.getDAOContact();
+		DAO<Contact> daoContact = adf.getDAOContact();
 		
-		ApplicationContext context =
-			WebApplicationContextUtils.getWebApplicationContext(getServletContext());
-		DAO<Contact> daoContact = (DAO<Contact>)context.getBean("DAOContact");
-		Contact c1 = (Contact)context.getBean("contact1");
+		//ApplicationContext context =
+		//	WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		//DAO<Contact> daoContact = (DAO<Contact>)context.getBean("DAOContact");
+		//Contact c1 = (Contact)context.getBean("contact1");
 
-		daoContact.create(c1);
+		//daoContact.create(c1);
 		///END
 		
 		/**
@@ -153,6 +153,7 @@ public class NewContact extends HttpServlet {
 		contact.setLastName(lastName);
 		contact.setPhones(listNumbers);
 		contact.setPhones(listNumbers);
+		newphoneNumber.setContact(contact);
 		
 		/**
 		 * Ajout des groupes associés au contact
