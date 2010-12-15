@@ -5,6 +5,7 @@
 	
 	<bean id="DAO" class="dao.DAO" abstract="true" />
 	<bean id="DAOContact" class="dao.DAOContact" parent="DAO" />
+	<bean id="DAOContactGroup" class="dao.DAOContactGroup" parent="DAO" />
 	
 	<!-- Informations sur le contact n°1 -->
 	<bean id="contact1" class="domain.Contact">

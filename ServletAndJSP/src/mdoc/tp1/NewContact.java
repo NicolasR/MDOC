@@ -12,9 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import dao.AbstractDAOFactory;
 import dao.DAO;
-import dao.DAOContact;
 import domain.Address;
 import domain.Contact;
 import domain.ContactGroup;
@@ -85,8 +83,8 @@ public class NewContact extends HttpServlet {
 		// catch (Exception e) {
 		// e.printStackTrace();
 		// }
-		AbstractDAOFactory adf = AbstractDAOFactory
-				.getFactory(AbstractDAOFactory.HIBERNATE_DAO_FACTORY);
+//		AbstractDAOFactory adf = AbstractDAOFactory
+//				.getFactory(AbstractDAOFactory.HIBERNATE_DAO_FACTORY);
 
 		/**
 		 * Définition de l'adresse
@@ -105,14 +103,18 @@ public class NewContact extends HttpServlet {
 		String email = request.getParameter("email");
 		
 		///SPRING
-		DAO<Contact> daoContact = adf.getDAOContact();
+//		DAO<Contact> daoContact = adf.getDAOContact();
 		
-		//ApplicationContext context =
-		//	WebApplicationContextUtils.getWebApplicationContext(getServletContext());
-		//DAO<Contact> daoContact = (DAO<Contact>)context.getBean("DAOContact");
-		//Contact c1 = (Contact)context.getBean("contact1");
-
-		//daoContact.create(c1);
+		ApplicationContext context =
+			WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		DAO<Contact> daoContact = (DAO<Contact>)context.getBean("DAOContact");
+		DAO<ContactGroup> daoContactGroup = (DAO<ContactGroup>)context.getBean("DAOContactGroup");
+		
+		ContactGroup cg1 = (ContactGroup)context.getBean("contactgroupC1");
+		Contact c1 = (Contact)context.getBean("contact1");
+		
+		daoContactGroup.create(cg1);
+		daoContact.create(c1);
 		///END
 		
 		/**
@@ -158,7 +160,7 @@ public class NewContact extends HttpServlet {
 		/**
 		 * Ajout des groupes associés au contact
 		 */
-		DAO<ContactGroup> daoContactGroup = adf.getDAOContactGroup();
+		//DAO<ContactGroup> daoContactGroup = adf.getDAOContactGroup();
 		List<ContactGroup> groups = daoContactGroup.getAll();
 		HashSet<ContactGroup> set = new HashSet<ContactGroup>();
 		for (ContactGroup group : groups) {
