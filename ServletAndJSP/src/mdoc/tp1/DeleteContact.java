@@ -7,10 +7,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import dao.AbstractDAOFactory;
 import dao.DAO;
 import domain.Address;
 import domain.Contact;
+import domain.ContactGroup;
 
 /**
  * Servlet implementation class deleteContact
@@ -39,6 +43,7 @@ public class DeleteContact extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@SuppressWarnings("unchecked")
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// Register the JDBC driver for MySQL.
@@ -65,10 +70,19 @@ public class DeleteContact extends HttpServlet {
 		 * e) { // TODO Auto-generated catch block e.printStackTrace(); }
 		 */
 
-		AbstractDAOFactory adf = AbstractDAOFactory
-				.getFactory(AbstractDAOFactory.HIBERNATE_DAO_FACTORY);
-		DAO<Contact> daoContact = adf.getDAOContact();
-		DAO<Address> daoAddress = adf.getDAOAddress();
+		
+		
+		//Spring
+		//AbstractDAOFactory adf = AbstractDAOFactory
+		//		.getFactory(AbstractDAOFactory.HIBERNATE_DAO_FACTORY);
+		//DAO<Contact> daoContact = adf.getDAOContact();
+		//DAO<Address> daoAddress = adf.getDAOAddress();
+		ApplicationContext context =
+			WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		DAO<Contact> daoContact = (DAO<Contact>)context.getBean("DAOContact");
+		DAO<Address> daoAddress = (DAO<Address>)context.getBean("DAOAddress");
+		//end Spring
+		
 		for (Contact c : daoContact.getAll()) {
 			String s = request.getParameter(c.getId().toString());
 			if (s != null && s.equals("on")) {

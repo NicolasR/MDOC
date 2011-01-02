@@ -15,8 +15,6 @@
 <br />
 <a href="deleteContact.jsp">Supprimer un contact</a>
 <br />
-<a href="updateContact.jsp">Modifier un contact</a>
-<br />
 <a href="searchContact.jsp">Chercher un contact</a>
 </body>
 </html>

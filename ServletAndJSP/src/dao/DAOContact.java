@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Transaction;
@@ -27,6 +28,10 @@ public class DAOContact extends DAO<Contact> {
 		super(conn);
 	}
 	
+	
+	/**
+	 * Constructeur vide (nécessaire pour spring)
+	 */
 	public DAOContact()
 	{
 		super(null);
@@ -169,7 +174,7 @@ public class DAOContact extends DAO<Contact> {
 		
 		return contact;
 	}
-
+	
 	/** (non-Javadoc)
 	 * @see dao.DAO#getAll()
 	 * Renvoie tous les contacts se trouvant dans la base de données

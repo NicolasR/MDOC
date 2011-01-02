@@ -27,6 +27,13 @@ public class DAOAddress extends DAO<Address> {
 		super(conn);
 	}
 
+	/**
+	 * Constructeur vide (nécessaire pour spring)
+	 */
+	public DAOAddress() {
+		super(null);
+	}
+	
 	/** (non-Javadoc)
 	 * @see dao.DAO#create(java.lang.Object)
 	 * Crée l'adresse dans la base de données

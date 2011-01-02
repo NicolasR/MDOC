@@ -46,6 +46,7 @@ public class NewContact extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@SuppressWarnings("unchecked")
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// try {
@@ -110,11 +111,19 @@ public class NewContact extends HttpServlet {
 		DAO<Contact> daoContact = (DAO<Contact>)context.getBean("DAOContact");
 		DAO<ContactGroup> daoContactGroup = (DAO<ContactGroup>)context.getBean("DAOContactGroup");
 		
+		//Ajout du contact n°1
 		ContactGroup cg1 = (ContactGroup)context.getBean("contactgroupC1");
 		Contact c1 = (Contact)context.getBean("contact1");
 		
 		daoContactGroup.create(cg1);
 		daoContact.create(c1);
+		
+		//Ajout du contact n°2
+		//ContactGroup cg2 = (ContactGroup)context.getBean("contactgroupC2");
+		Contact c2 = (Contact)context.getBean("contact2");
+		
+		//daoContactGroup.create(cg2);
+		daoContact.create(c2);
 		///END
 		
 		/**

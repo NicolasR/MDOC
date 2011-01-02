@@ -6,6 +6,7 @@
 	<bean id="DAO" class="dao.DAO" abstract="true" />
 	<bean id="DAOContact" class="dao.DAOContact" parent="DAO" />
 	<bean id="DAOContactGroup" class="dao.DAOContactGroup" parent="DAO" />
+	<bean id="DAOAddress" class="dao.DAOAddress" parent="DAO" />
 	
 	<!-- Informations sur le contact n°1 -->
 	<bean id="contact1" class="domain.Contact">
@@ -44,7 +45,42 @@
 		<property name="contacts">
 			<set>
 				<ref bean="contact1" />
+				<ref bean="contact2" />
 			</set>
+		</property>
+	</bean>
+	<!-- Fin contact1 -->
+	
+	<!-- Informations sur le contact n°2 -->
+	<bean id="contact2" class="domain.Contact">
+		<property name="firstName" value="Samantha"></property>
+		<property name="lastName" value="Carter"></property>
+		<property name="email" value="samantha.carter@sgc.com"></property>
+		<property name="address">
+			<ref bean="addressC1" />
+		</property>
+		<property name="phones">
+			<set>
+				<ref bean="phonenumberC1" />
+			</set>
+		</property>
+		<property name="groups">
+			<set>
+				<ref bean="contactgroupC1" />
+			</set>
+		</property>
+	</bean>
+	<bean id="addressC2" class="domain.Address">
+		<property name="street" value="2 Cheyenne Mountain street" />
+		<property name="city" value="Whashington DC" />
+		<property name="zip" value="12345" />
+		<property name="country" value="US" />
+	</bean>
+	<bean id="phonenumberC2" class="domain.PhoneNumber">
+		<property name="phoneKind" value="Portable" />
+		<property name="phoneNumber" value="06......" />
+		<property name="contact">
+			<ref bean="contact2" />
 		</property>
 	</bean>
 	<!-- Fin contact1 -->

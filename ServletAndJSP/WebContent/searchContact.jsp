@@ -4,14 +4,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Rechercher un contact</title>
 </head>
 <body>
 <form method="post" action="SearchContact">
-Id : <input type="text" name="id" size="25">
+	<select name="searchType">
+		<option value="byfirstName">Prénom</option>
+		<option value="bylastName">Nom</option>
+		<option value="byid">Id</option>
+	</select>
+	<input type="text" name="value" size="25">
 <br />
 <br />
-<input type="submit" value="Submit"> <input type="reset" value="Reset">
+<input type="submit" value="Rechercher"> <input type="reset" value="Effacer">
 </form>
 </body>
 </html>

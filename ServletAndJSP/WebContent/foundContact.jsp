@@ -11,11 +11,10 @@
 </head>
 <body>
 <%
-	AbstractDAOFactory adf = AbstractDAOFactory
-		.getFactory(AbstractDAOFactory.HIBERNATE_DAO_FACTORY);
+	AbstractDAOFactory adf = AbstractDAOFactory.getFactory(AbstractDAOFactory.HIBERNATE_DAO_FACTORY);
 
 	DAO<Contact> daoContact = adf.getDAOContact();
-	long id = Long.parseLong(request.getParameter("id"));
+	long id = Long.parseLong(request.getParameter("value"));
 	Contact contact = daoContact.find(id);
 
 	if (contact == null) 
@@ -28,9 +27,10 @@
 		Prenom:<%=contact.getFirstName()%><br>
 		email:<%=contact.getEmail()%><br>
 		<% String urlargs = "updateContact.jsp?"+
-			"id=" + contact.getId() + "&firstname="+
-			contact.getFirstName() + "&lastname="+
-			contact.getLastName() + "&email=" + contact.getEmail();%>
+			"id=" + contact.getId() + //"&firstname="+
+			//contact.getFirstName() + "&lastname="+
+			//contact.getLastName() +
+			"&email=" + contact.getEmail();%>
 		<a href='<%=urlargs%>'>Modifier</a>
 		<%
 	}%>

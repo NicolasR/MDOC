@@ -63,8 +63,11 @@ public class SearchContact extends HttpServlet {
 		// Contact contact =
 		// daoContact.find((Long.parseLong((request.getParameter("id")))));
 		// con.close();
-
-		request.getRequestDispatcher("foundContact.jsp").forward(request, response);
+		String value = request.getParameter("searchType");
+		if (value.equals("byid"))
+			request.getRequestDispatcher("foundContact.jsp").forward(request, response);
+		else
+			request.getRequestDispatcher("foundContacts.jsp").forward(request, response);
 	}
 
 }

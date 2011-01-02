@@ -27,6 +27,9 @@ public class DAOContactGroup extends DAO<ContactGroup> {
 		super(conn);
 	}
 	
+	/**
+	 * Constructeur vide (nécessaire pour spring)
+	 */
 	public DAOContactGroup()
 	{
 		super(null);

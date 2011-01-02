@@ -7,8 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import dao.AbstractDAOFactory;
 import dao.DAO;
+import domain.Contact;
 import domain.ContactGroup;
 
 /**
@@ -38,12 +42,19 @@ public class CreateGroup extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@SuppressWarnings("unchecked")
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		AbstractDAOFactory adf = AbstractDAOFactory
-				.getFactory(AbstractDAOFactory.HIBERNATE_DAO_FACTORY);
-		DAO<ContactGroup> daoContactGroup = adf.getDAOContactGroup();
-
+		
+		
+		//Spring
+		//AbstractDAOFactory adf = AbstractDAOFactory
+		//	.getFactory(AbstractDAOFactory.HIBERNATE_DAO_FACTORY);
+		//DAO<ContactGroup> daoContactGroup = adf.getDAOContactGroup();
+		ApplicationContext context =
+			WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		DAO<ContactGroup> daoContactGroup = (DAO<ContactGroup>)context.getBean("DAOContactGroup");
+		
 		boolean needToCreate = true;
 		for (ContactGroup group : daoContactGroup.getAll()) {
 			if (group.getGroupName().equals(request.getParameter("newGroup")))

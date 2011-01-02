@@ -17,26 +17,27 @@
 	String email = request.getParameter("email");
 	String id = request.getParameter("id");
 	Query query = HibernateUtil.currentSession().createQuery("from Contact where"
-			+" lastname='"+lastName+"'"
-			+" and firstname='"+firstName+"'"
-			+" and email='"+email+"'"
+			//+" lastname='"+lastName+"'"
+			//+" and firstname='"+firstName+"'"
+			+" email='"+email+"'"
 			+" and id='"+id+"'");
 	@SuppressWarnings(value="unchecked")
 	List<Contact> list = query.list();
 	if (list.size() == 1)
 	{
+		Contact contact = list.get(0);
 %>
 <form method="post" action="UpdateContact">
-Prénom : <input type="text" name="firstName" size="25" <%out.print("value='"+firstName+"'"); %>>
+Prénom : <input type="text" name="firstName" size="25" <%out.print("value='"+contact.getFirstName()+"'"); %>>
 <br />
-Nom : <input type="text" name="lastName" size="25" <%out.print("value='"+lastName+"'"); %>>
+Nom : <input type="text" name="lastName" size="25" <%out.print("value='"+contact.getLastName()+"'"); %>>
 <br />
-Email : <input type="text" name="email" size="25" <%out.print("value='"+email+"'"); %>>
+Email : <input type="text" name="email" size="25" <%out.print("value='"+contact.getEmail()+"'"); %>>
 <br />
-Id : <input type="text" name="id" size="25" <%out.print("value='"+id+"'"); %>>
+Id : <input type="text" name="id" size="25" <%out.print("value='"+contact.getId()+"'"); %>>
 <br />
 <br />
-<input type="submit" value="Valider"> <input type="reset" value="Effacer">
+<input type="submit" value="Valider">
 </form>
 <%	}
 	else
