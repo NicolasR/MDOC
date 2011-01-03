@@ -65,10 +65,10 @@
 	
 	<!-- Nécéssaire car nous n'avons pas programmé avec des interfaces -->
 	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
-	<aop:config>
+	<!-- <aop:config>
 		<aop:advisor pointcut="execution(* dao.*.*(..))"
 			advice-ref="txAdvice"/>
-	</aop:config>
+	</aop:config> -->
 	<!-- END Template Hibernate -->
 	
 	<!--  <bean id="DAO" class="dao.DAO" abstract="true" />-->
