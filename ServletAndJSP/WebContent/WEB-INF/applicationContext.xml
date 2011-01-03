@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
-	
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-2.0.xsd 
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx">
+	<aop:config>
+		<aop:pointcut id="servicePointcut"  expression="execution(* dao.DAOContact.create(..))"/>    		
+		<aop:aspect id="loggingAspect" ref="AOPclass">
+		    <aop:before method="hello"  pointcut-ref="servicePointcut"/>
+	    </aop:aspect>
+	</aop:config>
+	<bean id="AOPclass" class="util.AOPclass" />
 	<bean id="DAO" class="dao.DAO" abstract="true" />
 	<bean id="DAOContact" class="dao.DAOContact" parent="DAO" />
 	<bean id="DAOContactGroup" class="dao.DAOContactGroup" parent="DAO" />
