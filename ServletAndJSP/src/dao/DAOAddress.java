@@ -42,11 +42,11 @@ public class DAOAddress extends DAO<Address> {
 	 */
 	@Override
 	public boolean create(Address obj) {
-		Transaction transaction = HibernateUtil.currentSession()
+		/*Transaction transaction = HibernateUtil.currentSession()
 				.beginTransaction();
 		HibernateUtil.currentSession().saveOrUpdate(obj);
-		transaction.commit();
-
+		transaction.commit();*/
+		this.getHibernateTemplate().saveOrUpdate(obj);
 		return true;
 	}
 
@@ -59,11 +59,11 @@ public class DAOAddress extends DAO<Address> {
 	@Override
 	public boolean delete(long id) {
 		Address address = find(id);
-		Transaction transaction = HibernateUtil.currentSession()
+		/*Transaction transaction = HibernateUtil.currentSession()
 				.beginTransaction();
 		HibernateUtil.currentSession().delete(address);
-		transaction.commit();
-
+		transaction.commit();*/
+		this.getHibernateTemplate().delete(address);
 		return true;
 	}
 
@@ -75,11 +75,11 @@ public class DAOAddress extends DAO<Address> {
 	 */
 	@Override
 	public boolean update(Address obj) {
-		Transaction transaction = HibernateUtil.currentSession()
+		/*Transaction transaction = HibernateUtil.currentSession()
 				.beginTransaction();
 		HibernateUtil.currentSession().saveOrUpdate(obj);
-		transaction.commit();
-
+		transaction.commit();*/
+		this.getHibernateTemplate().saveOrUpdate(obj);
 		return true;
 	}
 
@@ -91,13 +91,13 @@ public class DAOAddress extends DAO<Address> {
 	 */
 	@Override
 	public Address find(long id) {
-		Transaction transaction = HibernateUtil.currentSession()
+		/*Transaction transaction = HibernateUtil.currentSession()
 				.beginTransaction();
 		Address address = (Address) HibernateUtil.currentSession().get(
 				Address.class, new Long(id));
-		transaction.commit();
-
-		return address;
+		transaction.commit();*/
+		
+		return this.getHibernateTemplate().get(Address.class, new Long(id));
 	}
 
 	/** (non-Javadoc)
@@ -105,17 +105,18 @@ public class DAOAddress extends DAO<Address> {
 	 * Renvoie toutes les adresses se trouvant dans la base de données
 	 * @return la liste des adresses
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Address> getAll() {
-		Transaction t = HibernateUtil.currentSession().beginTransaction();
+		/*Transaction t = HibernateUtil.currentSession().beginTransaction();
 
 		Query query = HibernateUtil.currentSession()
 				.createQuery("from Address");
 		@SuppressWarnings(value = "unchecked")
 		List<Address> list = query.list();
-		t.commit();
-
-		return list;
+		t.commit();*/
+		
+		return this.getHibernateTemplate().find("from Address");
 	}
 
 }

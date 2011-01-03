@@ -59,10 +59,10 @@ public class DAOContact extends DAO<Contact> {
 			return false;
 		}
 		return true;*/
-		Transaction transaction = HibernateUtil.currentSession().beginTransaction();
+		/*Transaction transaction = HibernateUtil.currentSession().beginTransaction();
 		HibernateUtil.currentSession().saveOrUpdate(contact);
-		transaction.commit();
-		
+		transaction.commit();*/
+		this.getHibernateTemplate().saveOrUpdate(contact);
 		return true;
 	}
 
@@ -84,7 +84,8 @@ public class DAOContact extends DAO<Contact> {
 			return false;
 		}*/
 		Contact contact = find(id);
-		Transaction transaction = HibernateUtil.currentSession().beginTransaction();
+		System.out.println("COUCOU"+contact.getFirstName());
+		//Transaction transaction = HibernateUtil.currentSession().beginTransaction();
 		
 		// Suppression de la reference du contact dans tous ses numéros de téléphone :
 		// Cela empeche Hibernate de tenter de re-sauvegarder le contact (par cascade) alors qu'il est supprimé
@@ -99,9 +100,9 @@ public class DAOContact extends DAO<Contact> {
 			group.getContacts().remove(contact);
 		}
 		
-		HibernateUtil.currentSession().delete(contact);
-		transaction.commit();
-		
+		/*HibernateUtil.currentSession().delete(contact);
+		transaction.commit();*/
+		this.getHibernateTemplate().delete(contact);
 		return true;
 	}
 
@@ -129,9 +130,10 @@ public class DAOContact extends DAO<Contact> {
 			e.printStackTrace();
 			return false;
 		}*/
-		Transaction transaction = HibernateUtil.currentSession().beginTransaction();
+		/*Transaction transaction = HibernateUtil.currentSession().beginTransaction();
 		HibernateUtil.currentSession().saveOrUpdate(obj);
-		transaction.commit();
+		transaction.commit();*/
+		this.getHibernateTemplate().saveOrUpdate(obj);
 		
 		return true;
 	}
@@ -168,11 +170,11 @@ public class DAOContact extends DAO<Contact> {
 			e.printStackTrace();
 			return null;
 		}*/
-		Transaction transaction = HibernateUtil.currentSession().beginTransaction();
+		/*Transaction transaction = HibernateUtil.currentSession().beginTransaction();
 		Contact contact = (Contact)HibernateUtil.currentSession().get(Contact.class, id);
-		transaction.commit();
+		transaction.commit();*/
 		
-		return contact;
+		return this.getHibernateTemplate().get(Contact.class, new Long(id));
 	}
 	
 	/** (non-Javadoc)
@@ -180,19 +182,20 @@ public class DAOContact extends DAO<Contact> {
 	 * Renvoie tous les contacts se trouvant dans la base de données
 	 * @return la liste des contacts
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Contact> getAll() {
-		Transaction t = HibernateUtil.currentSession().beginTransaction();
+		//Transaction t = HibernateUtil.currentSession().beginTransaction();
 		
 //		Query query = HibernateUtil.currentSession().createQuery("from Contact");
 //		@SuppressWarnings(value="unchecked")
 //		List<Contact> list = query.list();
 		
-		@SuppressWarnings(value="unchecked")
+		/*@SuppressWarnings(value="unchecked")
 		List<Contact> list = HibernateUtil.currentSession().createCriteria(Contact.class).addOrder(Order.asc("lastName")).list();
 		
-		t.commit();
+		t.commit();*/
 		
-		return list;
+		return this.getHibernateTemplate().find("from Contact");
 	}
 }

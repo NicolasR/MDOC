@@ -1,9 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-2.0.xsd 
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx">
+	<!--  <aop:config>
+		<aop:aspect id="myAOPclass2" ref="AOPclass">
+			<aop:before
+				pointcut="execution(* getEmail())"
+				method="hello" />
+		</aop:aspect>
+	</aop:config>-->
+	<!-- <aop:aspectj-autoproxy/> -->
+	<bean id="Address" class="domain.Address" />
+	<bean id="AOPclass" class="util.AOPclass"/>
 	
-	<bean id="DAO" class="dao.DAO" abstract="true" />
+	<!-- Template Hibernate -->
+	<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://localhost/mdoc"/>
+		<property name="username" value="root"/>
+		<property name="password" value="root"/>
+	</bean>
+	
+	<bean id="mySessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="myDataSource"/>
+		<property name="mappingResources">
+		
+		<list>
+			<value>domain/Address.hbm.xml</value>
+			<value>domain/Contact.hbm.xml</value>
+			<value>domain/ContactGroup.hbm.xml</value>
+			<value>domain/PhoneNumber.hbm.xml</value>
+		</list>
+		</property>
+			<property name="hibernateProperties">
+		<props>
+			<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+		</props>
+		</property>
+	</bean>
+	
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="mySessionFactory"/>
+	</bean>
+	
+	<bean id="DAO" class="dao.DAO" abstract="true">
+		<property name="sessionFactory" ref="mySessionFactory"/>
+	</bean>
+	
+	<tx:advice id="txAdvice">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true" timeout="-1" />
+			<tx:method name="sav*" propagation="REQUIRED" />
+			<tx:method name="find*" read-only="true" />
+			
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- Nécéssaire car nous n'avons pas programmé avec des interfaces -->
+	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+	<aop:config>
+		<aop:advisor pointcut="execution(* dao.*.*(..))"
+			advice-ref="txAdvice"/>
+	</aop:config>
+	<!-- END Template Hibernate -->
+	
+	<!--  <bean id="DAO" class="dao.DAO" abstract="true" />-->
 	<bean id="DAOContact" class="dao.DAOContact" parent="DAO" />
 	<bean id="DAOContactGroup" class="dao.DAOContactGroup" parent="DAO" />
 	<bean id="DAOAddress" class="dao.DAOAddress" parent="DAO" />
@@ -84,4 +151,7 @@
 		</property>
 	</bean>
 	<!-- Fin contact1 -->
+	
+	<!-- AOP -->
+
 </beans>

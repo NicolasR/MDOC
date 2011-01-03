@@ -42,28 +42,29 @@ public class DAOContactGroup extends DAO<ContactGroup> {
 	 */
 	@Override
 	public boolean create(ContactGroup obj) {
-		Transaction transaction = HibernateUtil.currentSession().beginTransaction();
+		/*Transaction transaction = HibernateUtil.currentSession().beginTransaction();
 		HibernateUtil.currentSession().saveOrUpdate(obj);
-		transaction.commit();
+		transaction.commit();*/
+		this.getHibernateTemplate().saveOrUpdate(obj);
 		return true;
 	}
 
 	@Override
 	public boolean delete(long id) {
-		// TODO Auto-generated method stub
-		return false;
+		ContactGroup group = find(id);
+		this.getHibernateTemplate().delete(group);
+		return true;
 	}
 
 	@Override
 	public boolean update(ContactGroup obj) {
-		// TODO Auto-generated method stub
-		return false;
+		this.getHibernateTemplate().saveOrUpdate(obj);
+		return true;
 	}
 
 	@Override
 	public ContactGroup find(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.getHibernateTemplate().get(ContactGroup.class, new Long(id));
 	}
 
 	/** (non-Javadoc)
@@ -71,15 +72,16 @@ public class DAOContactGroup extends DAO<ContactGroup> {
 	 * Renvoie tous les groupes se trouvant dans la base de données
 	 * @return la liste des groupes
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<ContactGroup> getAll() {
-		Transaction t = HibernateUtil.currentSession().beginTransaction();
+		/*Transaction t = HibernateUtil.currentSession().beginTransaction();
 		
 		Query query = HibernateUtil.currentSession().createQuery("from ContactGroup");
 		@SuppressWarnings(value="unchecked")
 		List<ContactGroup> list = query.list();
-		t.commit();
-		return list;
+		t.commit();*/
+		return this.getHibernateTemplate().find("from ContactGroup");
 	}
 
 }

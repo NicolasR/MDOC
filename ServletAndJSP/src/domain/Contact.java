@@ -2,6 +2,7 @@ package domain;
 
 import java.util.Set;
 
+
 /**
  * @author Charles DUFOUR
  * @author Nicolas RIGNAULT

@@ -3,13 +3,15 @@ package dao;
 import java.sql.Connection;
 import java.util.List;
 
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+
 /**
  * @author Charles DUFOUR
  * @author Nicolas RIGNAULT
  * DAO gérant les opérations avec la base de données
  * @param <T>
  */
-public abstract class DAO<T> {
+public abstract class DAO<T> extends HibernateDaoSupport{
 
 	protected Connection connect = null;
 

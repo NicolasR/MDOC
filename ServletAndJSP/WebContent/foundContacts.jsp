@@ -1,3 +1,5 @@
+<%@page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
+<%@page import="org.springframework.context.ApplicationContext"%>
 <%@page import="domain.Contact"%>
 <%@page import="domain.ContactGroup"%>
 <%@page import="dao.DAO"%>
@@ -14,10 +16,12 @@
 </head>
 <body>
 <% 
-AbstractDAOFactory adf = AbstractDAOFactory
-.getFactory(AbstractDAOFactory.HIBERNATE_DAO_FACTORY);
+//AbstractDAOFactory adf = AbstractDAOFactory
+//.getFactory(AbstractDAOFactory.HIBERNATE_DAO_FACTORY);
 
-DAO<Contact> daoContact = adf.getDAOContact();
+//DAO<Contact> daoContact = adf.getDAOContact();
+ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+DAO<Contact> daoContact = (DAO<Contact>)context.getBean("DAOContact");
 List<Contact> list = new ArrayList<Contact>();
 String searchType = request.getParameter("searchType");
 if (searchType.equals("byfirstName") || searchType.equals("bylastName")) {

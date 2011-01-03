@@ -1,6 +1,8 @@
+<%@page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
 <%@page import="domain.ContactGroup"%>
 <%@page import="dao.DAO"%>
 <%@page import="dao.AbstractDAOFactory"%>
+<%@page import="org.springframework.context.ApplicationContext" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -55,9 +57,11 @@ Entreprise: <input type="checkbox" id="isEntreprise" name="isEntreprise" onclick
 Numéro SIRET: <input type="text" name="numSiret">
 </fieldset>
 <%
-AbstractDAOFactory adf = AbstractDAOFactory
-	.getFactory(AbstractDAOFactory.HIBERNATE_DAO_FACTORY);
-DAO<ContactGroup> daoContactGroup = adf.getDAOContactGroup();
+//AbstractDAOFactory adf = AbstractDAOFactory
+//	.getFactory(AbstractDAOFactory.HIBERNATE_DAO_FACTORY);
+//DAO<ContactGroup> daoContactGroup = adf.getDAOContactGroup();
+ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+DAO<ContactGroup> daoContactGroup = (DAO<ContactGroup>)context.getBean("DAOContactGroup");
 if (daoContactGroup.getAll().size() > 0)
 {
 	
