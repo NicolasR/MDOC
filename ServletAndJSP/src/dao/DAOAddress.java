@@ -119,4 +119,15 @@ public class DAOAddress extends DAO<Address> {
 		return this.getHibernateTemplate().find("from Address");
 	}
 
+	/**
+	 * (non-Javadoc)
+	 * @see dao.DAO#query()
+	 * Renvoie la liste des éléments obtenus suite à la requête query
+	 * 
+	 * @return la liste des éléments
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Address> query(String query) {
+		return this.getHibernateTemplate().find(query);
+	}
 }

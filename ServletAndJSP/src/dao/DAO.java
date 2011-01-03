@@ -63,4 +63,10 @@ public abstract class DAO<T> extends HibernateDaoSupport{
 	 */
 	public abstract List<T> getAll();
 
+	/**
+	 * Renvoie la liste des éléments obtenus suite à la requête query
+	 * 
+	 * @return la liste des éléments
+	 */
+	public abstract List<T> query(String query);
 }

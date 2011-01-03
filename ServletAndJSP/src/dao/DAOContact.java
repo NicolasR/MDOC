@@ -177,6 +177,18 @@ public class DAOContact extends DAO<Contact> {
 		return this.getHibernateTemplate().get(Contact.class, new Long(id));
 	}
 	
+	/**
+	 * (non-Javadoc)
+	 * @see dao.DAO#query()
+	 * Renvoie la liste des éléments obtenus suite à la requête query
+	 * 
+	 * @return la liste des éléments
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Contact> query(String exec) {
+		return this.getHibernateTemplate().find(exec);
+	}
+	
 	/** (non-Javadoc)
 	 * @see dao.DAO#getAll()
 	 * Renvoie tous les contacts se trouvant dans la base de données

@@ -83,5 +83,17 @@ public class DAOContactGroup extends DAO<ContactGroup> {
 		t.commit();*/
 		return this.getHibernateTemplate().find("from ContactGroup");
 	}
+	
+	/**
+	 * (non-Javadoc)
+	 * @see dao.DAO#query()
+	 * Renvoie la liste des éléments obtenus suite à la requête query
+	 * 
+	 * @return la liste des éléments
+	 */
+	@SuppressWarnings("unchecked")
+	public List<ContactGroup> query(String query) {
+		return this.getHibernateTemplate().find(query);
+	}
 
 }

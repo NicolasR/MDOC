@@ -1,6 +1,7 @@
 package mdoc.tp1;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -88,7 +89,9 @@ public class DeleteContact extends HttpServlet {
 			if (s != null && s.equals("on")) {
 				long addressId = c.getAddress().getId();
 				c.setAddress(null);
-				daoAddress.delete(addressId);
+				List<Contact> list = daoContact.query("from Contact where address="+addressId);
+				if (list.size() == 1)
+					daoAddress.delete(addressId);
 				daoContact.delete(c.getId());
 			}
 		}
