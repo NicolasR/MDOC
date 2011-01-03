@@ -21,13 +21,13 @@
         <many-to-one name="address" class="domain.Address" fetch="join" cascade="save-update">
             <column name="ADDRESS" />
         </many-to-one>
-        <set name="phones" table="PHONENUMBER" lazy="true" inverse="true" cascade="save-update">
+        <set name="phones" table="PHONENUMBER" lazy="false" inverse="true" cascade="save-update">
             <key>
                 <column name="ID" />
             </key>
             <one-to-many class="domain.PhoneNumber" />
         </set>
-        <set name="groups" table="GROUPS_CONTACTS_LINK" inverse="true" lazy="true">
+        <set name="groups" table="GROUPS_CONTACTS_LINK" inverse="true" lazy="false">
             <key>
                 <column name="ID" />
             </key>
