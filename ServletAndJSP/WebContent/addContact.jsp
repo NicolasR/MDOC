@@ -13,6 +13,7 @@
 <title>Ajouter un contact</title>
 </head>
 <body>
+<%@ include file="checkLoginOK.jsp" %>
 <script language="JavaScript">
   function showhidefield()
   {

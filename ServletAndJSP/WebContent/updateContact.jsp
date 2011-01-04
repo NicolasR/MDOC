@@ -14,6 +14,7 @@
 <title>Modifier contact</title>
 </head>
 <body>
+<%@ include file="checkLoginOK.jsp" %>
 <%
 	String firstName = request.getParameter("firstname");
 	String lastName = request.getParameter("lastname");

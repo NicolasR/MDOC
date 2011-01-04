@@ -7,6 +7,7 @@
 <title>Rechercher un contact</title>
 </head>
 <body>
+<%@ include file="checkLoginOK.jsp" %>
 <form method="post" action="SearchContact">
 	<select name="searchType">
 		<option value="byfirstName">Prénom</option>

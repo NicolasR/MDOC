@@ -8,7 +8,8 @@
 <title>Accueil</title>
 </head>
 <body>
-<h1>Bienvenue <%=request.getParameter("username") %></h1>
+<%@ include file="checkLoginOK.jsp" %>
+<h1>Bienvenue <%= (String)session.getAttribute("userName") %></h1>
 <br />
 <h2>Quelques liens :</h2>
 <a href="addContact.jsp">Ajouter un contact</a>
@@ -16,5 +17,7 @@
 <a href="deleteContact.jsp">Supprimer un contact</a>
 <br />
 <a href="searchContact.jsp">Chercher un contact</a>
+<br />
+<a href="logout.jsp">Se déconnecter</a>
 </body>
 </html>

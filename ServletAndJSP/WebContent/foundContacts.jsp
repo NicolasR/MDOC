@@ -15,6 +15,7 @@
 <title>Résultat de la recherche</title>
 </head>
 <body>
+<%@ include file="checkLoginOK.jsp" %>
 <% 
 //AbstractDAOFactory adf = AbstractDAOFactory
 //.getFactory(AbstractDAOFactory.HIBERNATE_DAO_FACTORY);

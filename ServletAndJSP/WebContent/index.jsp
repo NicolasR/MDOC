@@ -6,8 +6,16 @@
 <title>Your name</title>
 </head>
 <body>
+
+<%@ include file="auth.jsp"%>
+<% if (isAuth(session))
+   {
+	%><jsp:forward page="accueil.jsp" /><%
+   }
+
+%>
 <h3>Bonjour, quel est votre nom ?</h3>
-<form method="post" action="login.jsp">Nom: <input type="text"
+<form method="post" action="CheckLogin">Nom: <input type="text"
 	name="username" size="25">Mot de passe: <input type="password"
 	name="password" size="25">
 <p></p>

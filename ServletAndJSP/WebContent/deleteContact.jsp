@@ -14,6 +14,7 @@
 <title>Supprimer un contact</title>
 </head>
 <body>
+<%@ include file="checkLoginOK.jsp" %>
 	<form method="post" action="DeleteContact">
 		<%
 		//AbstractDAOFactory adf = AbstractDAOFactory
