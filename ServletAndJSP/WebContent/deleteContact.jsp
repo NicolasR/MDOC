@@ -1,4 +1,5 @@
 
+<%@page import="domain.ContactGroup"%>
 <%@page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
 <%@page import="org.springframework.context.ApplicationContext"%>
 <%@page import="domain.Contact"%>
@@ -30,6 +31,9 @@
 		<th>ID</th>
 		<th>Nom</th>
 		<th>Prénom</th>
+		<th>Email</th>
+		<th>Adresse</th>
+		<th>Groupes</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -42,6 +46,9 @@
 			<label for="<%=c.getId()%>"><%=c.getId()%></label></td>
 			<td><%=c.getLastName()%></td>
 			<td><%=c.getFirstName()%></td>
+			<td><%=c.getEmail()%></td>
+			<td><%=c.getAddress().getStreet()%> <%=c.getAddress().getZip()%> <%=c.getAddress().getCity()%> <%=c.getAddress().getCountry()%></td>
+			<td><select><%for(ContactGroup group : c.getGroups()) { %> <option><%=group.getGroupName()%></option> <% } %></select>
 			</tr>
 			<%
 		}

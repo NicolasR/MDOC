@@ -15,11 +15,13 @@
 
 %>
 <h3>Bonjour, quel est votre nom ?</h3>
-<form method="post" action="CheckLogin">Nom: <input type="text"
-	name="username" size="25">Mot de passe: <input type="password"
-	name="password" size="25">
+<form method="post" action="CheckLogin">
+	Nom: <input type="text" name="username" size="25">
+	<br />
+	Mot de passe: <input type="password" name="password" size="25">
 <p></p>
 <input type="submit" value="Valider"> <input type="reset"
-	value="Effacer"></form>
+	value="Effacer">
+</form>
 </body>
 </html>

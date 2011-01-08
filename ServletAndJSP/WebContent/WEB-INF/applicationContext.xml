@@ -14,6 +14,9 @@
 			<aop:after-returning pointcut="execution(* dao.DAOContact.create(domain.Contact))
 											and args(contact)"
 					method="contactCreated" arg-names="contact"/>
+			<aop:around pointcut="execution(* dao.DAOContact.delete(long))
+									and args(id)" 
+					method="contactDeleted" arg-names="pjp,id" />
 	    </aop:aspect>
 	</aop:config>
 	<!-- <aop:aspectj-autoproxy/> Pour AspectJ seulement -->
