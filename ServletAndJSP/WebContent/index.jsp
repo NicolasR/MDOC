@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" media="screen" type="text/css" title="Design" href="design.css" />
-<title>Authentification nécessaire</title>
+<title>Authentification n&eacute;cessaire</title>
 </head>
 <body>
 
@@ -19,10 +19,10 @@
 	<form method="post" action="CheckLogin">
 		<table style="border: 0;">
 			<tr>
-				<td style="text-align: left; width: 20px;">Nom:</td><td><input type="text" name="username" size="25"></td>
+				<td style="text-align: left;">Nom:</td><td style="text-align: left;"><input type="text" name="username"></td>
 			</tr>
 			<tr>
-				<td style="text-align: left;">Mot de passe:</td><td><input type="password" name="password" size="25"></td>
+				<td style="text-align: left; width: 100px;">Mot de passe:</td><td style="text-align: left;"><input type="password" name="password" style="width: 150px;"></td>
 			</tr>
 		</table>
 	<p></p>

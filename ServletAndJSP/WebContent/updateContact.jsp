@@ -34,17 +34,25 @@
 		//Contact contact = list.get(0);
 %>
 <form method="post" action="UpdateContact">
-Prénom : <input type="text" name="firstName" size="25" <%out.print("value='"+contact.getFirstName()+"'"); %>>
-<br />
-Nom : <input type="text" name="lastName" size="25" <%out.print("value='"+contact.getLastName()+"'"); %>>
-<br />
-Email : <input type="text" name="email" size="25" <%out.print("value='"+contact.getEmail()+"'"); %>>
-<br />
-Id : <%=contact.getId() %>
-<br />
-<br />
-<input type="submit" value="Valider">
-</form>
+<div style="text-align: center;">
+	<h3>Modifier un contact</h3>
+	<table style="border: solid 1px black;">
+		<tr>
+			<td>Prénom :</td><td><input type="text" name="firstName" size="25" <%out.print("value='"+contact.getFirstName()+"'"); %>></td>
+		</tr>
+		<tr>
+			<td>Nom :</td><td><input type="text" name="lastName" size="25" <%out.print("value='"+contact.getLastName()+"'"); %>></td>
+		</tr>
+		<tr>
+			<td>Email :</td><td><input type="text" name="email" size="25" <%out.print("value='"+contact.getEmail()+"'"); %>></td>
+		</tr>
+		<tr>
+			<td>Id :</td><td><%=contact.getId() %></td>
+		</tr>
+		<tr>
+			<td colspan="2"><input type="submit" value="Valider"></td>
+		</tr>
+	</table>
 <%	}
 	else
 	{
@@ -52,5 +60,7 @@ Id : <%=contact.getId() %>
 	<h1>Pas de contact avec ces informations</h1>
 	<% 
 	}%>
+</div>
+</form>
 </body>
 </html>

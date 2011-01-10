@@ -90,8 +90,8 @@ public class DeleteContact extends HttpServlet {
 				long addressId = c.getAddress().getId();
 				c.setAddress(null);
 				List<Contact> list = daoContact.query("from Contact where address="+addressId);
-				if (list.size() == 1)
-					daoAddress.delete(addressId);
+				//if (list.size() == 1)
+					//daoAddress.delete(addressId);
 				daoContact.delete(c.getId());
 			}
 		}

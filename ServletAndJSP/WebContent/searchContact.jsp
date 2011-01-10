@@ -8,16 +8,25 @@
 </head>
 <body>
 <%@ include file="checkLoginOK.jsp" %>
-<form method="post" action="SearchContact">
-	<select name="searchType">
-		<option value="byfirstName">Prénom</option>
-		<option value="bylastName">Nom</option>
-		<option value="byid">Id</option>
-	</select>
-	<input type="text" name="value" size="25">
-<br />
-<br />
-<input type="submit" value="Rechercher"> <input type="reset" value="Effacer">
-</form>
+<div style="text-align: center;">
+	<h3>Rechercher un contact</h3>
+	<table>
+		<form method="post" action="SearchContact">
+			<tr>
+				<td>
+					<select name="searchType">
+						<option value="byfirstName">Prénom</option>
+						<option value="bylastName">Nom</option>
+						<option value="byid">Id</option>
+					</select>
+				</td>
+				<td><input type="text" name="value" size="25"></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" value="Rechercher"> <input type="reset" value="Effacer"></td>
+			</tr>
+		</form>
+	</table>
+</div>
 </body>
 </html>

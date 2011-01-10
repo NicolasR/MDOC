@@ -35,9 +35,25 @@ table
 	margin-right: auto;
 }
 
-#accueil_menu
+#accueil_menu, #delete_menu
 {
 	text-align: center;
+}
+
+#delete_menu thead tr, #delete_menu thead tr th, #delete_menu tbody tr, #delete_menu tbody tr td
+{
+	border: solid 1px black;
+	width: 15%;
+}
+
+#update_menu, #update_menu tr, #update_menu tr td
+{
+	border: solid 1px black;
+}
+
+#addContact_menu tr td
+{
+	padding-bottom: 12px;
 }
 
 #accueil_menu div

@@ -18,7 +18,7 @@
         <property name="email" type="java.lang.String">
             <column name="EMAIL" />
         </property>
-        <many-to-one name="address" class="domain.Address" fetch="join" cascade="save-update">
+        <many-to-one name="address" class="domain.Address" fetch="join" cascade="all" unique="true">
             <column name="ADDRESS" />
         </many-to-one>
         <set name="phones" table="PHONENUMBER" lazy="false" inverse="true" cascade="all">

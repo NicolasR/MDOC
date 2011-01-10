@@ -128,7 +128,7 @@
 		<property name="lastName" value="Carter"></property>
 		<property name="email" value="samantha.carter@sgc.com"></property>
 		<property name="address">
-			<ref bean="addressC1" />
+			<ref bean="addressC2" />
 		</property>
 		<property name="phones">
 			<set>

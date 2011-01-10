@@ -27,36 +27,23 @@
     }
   }
 </script>
+<div style="text-align: center;">
 <form method="post" action="NewContact">
-<fieldset>
-Prénom : <input type="text" name="firstName" size="25">
-<br />
-Nom : <input type="text" name="lastName" size="25">
-<br />
-Email : <input type="text" name="email" size="25">
-</fieldset>
-<fieldset>
-Rue : <input type="text" name="street" size="25">
-<br />
-Ville : <input type="text" name="city" size="25">
-<br />
-Code postale : <input type="text" name="zip" size="25">
-<br />
-Pays : <input type="text" name="country" size="25">
-<br />
-</fieldset>
-<fieldset>
-Type de téléphone : <input type="text" name="phoneKind" size="25">
-<br />
-Numéro de téléphone : <input type="text" name="phoneNumber" size="25">
-<br />
-</fieldset>
-<fieldset>
-Entreprise: <input type="checkbox" id="isEntreprise" name="isEntreprise" onclick="showhidefield()">
-</fieldset>
-<fieldset id="siret" style="display:none;">
-Numéro SIRET: <input type="text" name="numSiret">
-</fieldset>
+<table id="addContact_menu">
+<tr><td colspan="2" style="padding-top: 20px; padding-bottom: 15px;">Information du contact</td></tr>
+<tr><td>Prénom :</td><td><input type="text" name="firstName" size="25"></td></tr>
+<tr><td>Nom :</td><td><input type="text" name="lastName" size="25"></td></tr>
+<tr><td>Email :</td><td><input type="text" name="email" size="25"></td></tr>
+<tr><td colspan="2" style="padding-top: 20px; padding-bottom: 15px;">Addresse</td></tr>
+<tr><td>Rue :</td><td><input type="text" name="street" size="25"></td></tr>
+<tr><td>Ville :</td><td><input type="text" name="city" size="25"></td></tr>
+<tr><td>Code postale :</td><td><input type="text" name="zip" size="25"></td></tr>
+<tr><td>Pays :</td><td><input type="text" name="country" size="25"></td></tr>
+<tr><td colspan="2" style="padding-top: 20px; padding-bottom: 15px;">Téléphone</td></tr>
+<tr><td>Type de téléphone :</td><td><input type="text" name="phoneKind" size="25"></td></tr>
+<tr><td>Numéro de téléphone :</td><td><input type="text" name="phoneNumber" size="25"></td></tr>
+<tr><td>Entreprise:</td><td><input type="checkbox" id="isEntreprise" name="isEntreprise" onclick="showhidefield()"></td></tr>
+<tr id="siret" style="display:none;"><td>Numéro SIRET:</td><td><input type="text" name="numSiret"></td></tr>
 <%
 //AbstractDAOFactory adf = AbstractDAOFactory
 //	.getFactory(AbstractDAOFactory.HIBERNATE_DAO_FACTORY);
@@ -67,27 +54,36 @@ if (daoContactGroup.getAll().size() > 0)
 {
 	
 %>
-<fieldset>
-Choisissez les groupes :<br />
+<tr><td colspan="2" style="padding-top: 20px; padding-bottom: 15px;">Choisissez les groupes :</td></tr>
 	<%
 	for(ContactGroup group : daoContactGroup.getAll())
 	{
 		%>
-		<input type="checkbox" name="<%=group.getGroupName()%>" id="<%=group.getGroupName()%>" /> 
-		<label for="<%=group.getGroupName()%>"><%=group.getGroupName()%></label><br />
+		<tr>
+			<td colspan="2" >
+				<input type="checkbox" name="<%=group.getGroupName()%>" id="<%=group.getGroupName()%>" /> 
+				<label for="<%=group.getGroupName()%>"><%=group.getGroupName()%></label><br />
+			</td>
+		</tr>
 		<%
 	}
 %>
-</fieldset>
 <%
 }
 %>
-<input type="submit" value="Ajouter"> <input type="reset" value="Effacer">
+<tr><td colspan="2" style="padding-bottom: 50px;"><input type="submit" value="Ajouter" style="margin-right: 5px;"><input type="reset" value="Effacer"></td></tr>
 </form>
 <form method="post" action="CreateGroup">
-<fieldset>
-Créer un nouveau groupe : <input type="text" name="newGroup" size="25"> <input type="submit" value="Créer groupe">
-</fieldset>
+<tr>
+	<td>Créer un nouveau groupe :</td>
+	<td><input type="text" name="newGroup" size="25"></td>
+</tr>
+<tr>
+	<td colspan="2"><input type="submit" value="Créer groupe"></td>
+</tr>
 </form>
+</table>
+</form>
+</div>
 </body>
 </html>

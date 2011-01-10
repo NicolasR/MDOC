@@ -24,7 +24,7 @@
 
 	if (contact == null) 
 	{
-		%><h1>Pas de contact avec cet id</h1><%
+		%><h1 style="text-align: center;">Pas de contact avec cet id</h1><%
 	} 
 	else 
 	{

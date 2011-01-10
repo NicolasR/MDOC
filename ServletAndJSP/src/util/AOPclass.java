@@ -20,7 +20,7 @@ public class AOPclass {
 	{
 		if (id == 1)
 		{
-			System.out.println("Thor s'est interposé. Impossible de le supprimer !");
+			System.out.println("ASPECT: Thor s'est interposé. Impossible de supprimer Jack O'Neill !");
 		}
 		else
 		{

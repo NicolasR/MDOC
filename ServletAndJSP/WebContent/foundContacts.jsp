@@ -11,7 +11,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Résultat de la recherche</title>
 </head>
 <body>
@@ -42,32 +42,40 @@ else if (searchType.equals("bygroup")) {
 	}
 }
 if (list.size() == 0)
-	out.println("<h1>Aucun résultat!</h1>");
+	out.println("<h1 style='text-align: center;'>Aucun résultat!</h1>");
 else
 {
-	out.println(list.size()+" résultat(s)");
-	out.println("<table border='1'>");
-	out.println("<tr>");
-	out.print("<td>Nom</td>");
-	out.print("<td>Prénom</td>");
-	out.print("<td>Email</td>");
-	out.print("<td></td>");
-	out.println("</tr>");
+	%>
+	<div id="found" style="text-align: center;">
+	<h3><%out.print(list.size()+" résultat(s)");%></h3>
+	<table style="border: solid 1px black;">
+		<tr>
+			<td>Nom</td>
+			<td>Prénom</td>
+			<td>Email</td>
+			<td></td>
+		</tr>
+	<%
 	for(Contact contact : list) {
-		out.println("<tr>");
-		out.print("<td>"+contact.getLastName()+"</td>");
-		out.print("<td>"+contact.getFirstName()+"</td>");
-		out.print("<td>"+contact.getEmail()+"</td>");
-		out.print("<td>");
-		String urlargs = "updateContact.jsp?"+
-		"id=" + contact.getId() + //"&firstname="+
-		//contact.getFirstName() + "&lastname="+
-		//contact.getLastName() + 
-		"&email=" + contact.getEmail();
-		out.print("<a href='"+urlargs+"'>Modifier</a>");
-		out.println("</tr>");
+		%>
+		<tr>
+			<td><%=contact.getLastName()%></td>
+			<td><%=contact.getFirstName()%></td>
+			<td><%=contact.getEmail()%></td>
+			<td><%
+				String urlargs = "updateContact.jsp?"+
+				"id=" + contact.getId() + //"&firstname="+
+				//contact.getFirstName() + "&lastname="+
+				//contact.getLastName() + 
+				"&email=" + contact.getEmail();%>
+				<a href='<%=urlargs%>'>Modifier</a>
+			</td>
+		</tr><%
 	}
-	out.println("</table>");
+	%>
+	</table>
+	</div>
+	<%
 }
 %>
 </body>

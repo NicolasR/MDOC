@@ -25,7 +25,9 @@
 		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 		DAO<Contact> daoContact = (DAO<Contact>)context.getBean("DAOContact");
 		%>
-		<table>
+	<div id="delete_menu">
+		<h3>Liste des contacts</h3>
+		<table style="border: solid 1px black;">
 		<thead>
 		<tr>
 		<th>ID</th>
@@ -48,16 +50,27 @@
 			<td><%=c.getFirstName()%></td>
 			<td><%=c.getEmail()%></td>
 			<td><%=c.getAddress().getStreet()%> <%=c.getAddress().getZip()%> <%=c.getAddress().getCity()%> <%=c.getAddress().getCountry()%></td>
-			<td><select><%for(ContactGroup group : c.getGroups()) { %> <option><%=group.getGroupName()%></option> <% } %></select></td>
+			<%
+			if (c.getGroups().size()>0)
+			{
+				%><td><select><%for(ContactGroup group : c.getGroups()) { %> <option><%=group.getGroupName()%></option> <% } %></select></td><%
+			}
+			else
+			{
+				%><td>Aucun</td><%
+			}
+			%>
 			</tr>
 			<%
 		}
 		%>
 		</tbody>
 		</table>
+		<input type="submit" value="Supprimer contact" style="margin-top: 20px;">
+	</div>
 		<%
 		%>
-	<input type="submit" value="Supprimer contact">
+	
 	</form>
 </body>
 </html>
