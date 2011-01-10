@@ -48,7 +48,7 @@
 			<td><%=c.getFirstName()%></td>
 			<td><%=c.getEmail()%></td>
 			<td><%=c.getAddress().getStreet()%> <%=c.getAddress().getZip()%> <%=c.getAddress().getCity()%> <%=c.getAddress().getCountry()%></td>
-			<td><select><%for(ContactGroup group : c.getGroups()) { %> <option><%=group.getGroupName()%></option> <% } %></select>
+			<td><select><%for(ContactGroup group : c.getGroups()) { %> <option><%=group.getGroupName()%></option> <% } %></select></td>
 			</tr>
 			<%
 		}

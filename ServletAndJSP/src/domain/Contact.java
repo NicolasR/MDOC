@@ -39,7 +39,7 @@ public class Contact {
 	private Address address;
 	
 	/**
-	 * Les numéros de téléphone associé au contact
+	 * Les numéros de téléphone associés au contact
 	 */
 	private Set<PhoneNumber> phones;
 	
