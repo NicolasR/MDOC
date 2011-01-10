@@ -88,6 +88,7 @@ public class UpdateContact extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}*/
+	      request.getRequestDispatcher("accueil.jsp").forward(request, response);
 	}
 
 }

@@ -185,6 +185,7 @@ public class NewContact extends HttpServlet {
 		 * Création du contact
 		 */
 		daoContact.create(contact);
+		request.getRequestDispatcher("accueil.jsp").forward(request, response);
 	}
 
 }
