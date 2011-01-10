@@ -20,7 +20,7 @@ public class AOPclass {
 	{
 		if (id == 1)
 		{
-			System.out.println("Impossible de supprimer ce contact !");
+			System.out.println("Thor s'est interposé. Impossible de le supprimer !");
 		}
 		else
 		{

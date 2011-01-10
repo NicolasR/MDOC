@@ -40,7 +40,7 @@ Nom : <input type="text" name="lastName" size="25" <%out.print("value='"+contact
 <br />
 Email : <input type="text" name="email" size="25" <%out.print("value='"+contact.getEmail()+"'"); %>>
 <br />
-Id : <input type="text" name="id" size="25" <%out.print("value='"+contact.getId()+"'"); %>>
+Id : <%=contact.getId() %>
 <br />
 <br />
 <input type="submit" value="Valider">

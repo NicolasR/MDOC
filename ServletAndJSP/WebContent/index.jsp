@@ -19,7 +19,7 @@
 	<form method="post" action="CheckLogin">
 		<table style="border: 0;">
 			<tr>
-				<td style="text-align: left;">Nom:</td><td><input type="text" name="username" size="25"></td>
+				<td style="text-align: left; width: 20px;">Nom:</td><td><input type="text" name="username" size="25"></td>
 			</tr>
 			<tr>
 				<td style="text-align: left;">Mot de passe:</td><td><input type="password" name="password" size="25"></td>

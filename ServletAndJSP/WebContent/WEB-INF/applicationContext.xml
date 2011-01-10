@@ -47,6 +47,7 @@
 				<props>
 					<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 					<prop key="hibernate.hbm2ddl.auto">create</prop>
+					<prop key="log4j.logger.net.sf.hibernate">TRACE</prop>
 				</props>
 			</property>
 	</bean>
@@ -131,7 +132,7 @@
 		</property>
 		<property name="phones">
 			<set>
-				<ref bean="phonenumberC1" />
+				<ref bean="phonenumberC2" />
 			</set>
 		</property>
 		<property name="groups">

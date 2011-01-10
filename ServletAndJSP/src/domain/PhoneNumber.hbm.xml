@@ -14,7 +14,7 @@
         <property name="phoneNumber" type="java.lang.String">
             <column name="PHONENUMBER" />
         </property>
-        <many-to-one name="contact" class="domain.Contact" fetch="join" cascade="save-update">
+        <many-to-one name="contact" class="domain.Contact" fetch="join" cascade="all">
             <column name="CONTACT" />
         </many-to-one>
     </class>
