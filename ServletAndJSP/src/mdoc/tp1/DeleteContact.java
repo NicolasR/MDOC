@@ -95,6 +95,7 @@ public class DeleteContact extends HttpServlet {
 				daoContact.delete(c.getId());
 			}
 		}
+		request.getRequestDispatcher("accueil.jsp").forward(request, response);
 	}
 
 }

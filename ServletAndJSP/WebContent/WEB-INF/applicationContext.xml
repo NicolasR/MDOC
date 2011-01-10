@@ -29,7 +29,7 @@
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 		<property name="url" value="jdbc:mysql://localhost/mdoc"/>
 		<property name="username" value="root"/>
-		<property name="password" value="root"/>
+		<property name="password" value=""/>
 	</bean>
 	
 	<bean id="mySessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">

@@ -22,3 +22,47 @@ td, th
 {
    border: 1px solid black;
 }
+
+#login
+{
+	text-align: center;
+}
+
+#index_titre
+{
+	text-align: center;
+}
+
+#login form table
+{
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#accueil_menu
+{
+	text-align: center;
+}
+
+#accueil_menu div
+{
+	margin-bottom: 20px;
+}
+
+#accueil_menu div a:LINK
+{
+	text-decoration:none;
+	color: blue;
+}
+
+#accueil_menu div a:VISITED {
+	color: blue;
+	text-decoration: none;
+}
+
+#accueil_menu div a:HOVER
+{
+	text-decoration: none;
+	color: red;	
+}
+
