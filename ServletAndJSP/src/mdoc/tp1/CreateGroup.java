@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import dao.AbstractDAOFactory;
+//import dao.AbstractDAOFactory;
 import dao.DAO;
-import domain.Contact;
+//import domain.Contact;
 import domain.ContactGroup;
 
 /**

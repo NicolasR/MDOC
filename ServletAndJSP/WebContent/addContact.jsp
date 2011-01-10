@@ -28,18 +28,19 @@
   }
 </script>
 <div style="text-align: center;">
+<h1>Ajouter un contact</h1>
 <form method="post" action="NewContact">
 <table id="addContact_menu">
-<tr><td colspan="2" style="padding-top: 20px; padding-bottom: 15px;">Information du contact</td></tr>
+<tr><td colspan="2" style="padding-top: 20px; padding-bottom: 15px; font-weight: bold;">Information du contact</td></tr>
 <tr><td>Prénom :</td><td><input type="text" name="firstName" size="25"></td></tr>
 <tr><td>Nom :</td><td><input type="text" name="lastName" size="25"></td></tr>
 <tr><td>Email :</td><td><input type="text" name="email" size="25"></td></tr>
-<tr><td colspan="2" style="padding-top: 20px; padding-bottom: 15px;">Addresse</td></tr>
+<tr><td colspan="2" style="padding-top: 20px; padding-bottom: 15px; font-weight: bold;">Addresse</td></tr>
 <tr><td>Rue :</td><td><input type="text" name="street" size="25"></td></tr>
 <tr><td>Ville :</td><td><input type="text" name="city" size="25"></td></tr>
 <tr><td>Code postale :</td><td><input type="text" name="zip" size="25"></td></tr>
 <tr><td>Pays :</td><td><input type="text" name="country" size="25"></td></tr>
-<tr><td colspan="2" style="padding-top: 20px; padding-bottom: 15px;">Téléphone</td></tr>
+<tr><td colspan="2" style="padding-top: 20px; padding-bottom: 15px; font-weight: bold;">Téléphone</td></tr>
 <tr><td>Type de téléphone :</td><td><input type="text" name="phoneKind" size="25"></td></tr>
 <tr><td>Numéro de téléphone :</td><td><input type="text" name="phoneNumber" size="25"></td></tr>
 <tr><td>Entreprise:</td><td><input type="checkbox" id="isEntreprise" name="isEntreprise" onclick="showhidefield()"></td></tr>
@@ -54,7 +55,7 @@ if (daoContactGroup.getAll().size() > 0)
 {
 	
 %>
-<tr><td colspan="2" style="padding-top: 20px; padding-bottom: 15px;">Choisissez les groupes :</td></tr>
+<tr><td colspan="2" style="padding-top: 20px; padding-bottom: 15px; font-weight: bold;">Choisissez les groupes :</td></tr>
 	<%
 	for(ContactGroup group : daoContactGroup.getAll())
 	{
@@ -75,7 +76,7 @@ if (daoContactGroup.getAll().size() > 0)
 </form>
 <form method="post" action="CreateGroup">
 <tr>
-	<td>Créer un nouveau groupe :</td>
+	<td style="font-weight: bold;">Créer un nouveau groupe :</td>
 	<td><input type="text" name="newGroup" size="25"></td>
 </tr>
 <tr>

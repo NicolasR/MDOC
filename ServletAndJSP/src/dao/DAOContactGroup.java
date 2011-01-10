@@ -3,10 +3,10 @@ package dao;
 import java.sql.Connection;
 import java.util.List;
 
-import org.hibernate.Query;
-import org.hibernate.Transaction;
+//import org.hibernate.Query;
+//import org.hibernate.Transaction;
 
-import util.HibernateUtil;
+//import util.HibernateUtil;
 
 import domain.ContactGroup;
 

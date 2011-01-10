@@ -26,7 +26,7 @@
 		DAO<Contact> daoContact = (DAO<Contact>)context.getBean("DAOContact");
 		%>
 	<div id="delete_menu">
-		<h3>Liste des contacts</h3>
+		<h1>Liste des contacts</h1>
 		<table style="border: solid 1px black;">
 		<thead>
 		<tr>

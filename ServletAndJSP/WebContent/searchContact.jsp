@@ -4,13 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" media="screen" type="text/css" title="Design" href="design.css" />
 <title>Rechercher un contact</title>
 </head>
 <body>
 <%@ include file="checkLoginOK.jsp" %>
 <div style="text-align: center;">
-	<h3>Rechercher un contact</h3>
-	<table>
+	<h1>Rechercher un contact</h1>
+	<table id="search_menu">
 		<form method="post" action="SearchContact">
 			<tr>
 				<td>

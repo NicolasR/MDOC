@@ -11,6 +11,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" media="screen" type="text/css" title="Design" href="design.css" />
 <title>Modifier contact</title>
 </head>
 <body>
@@ -35,7 +36,7 @@
 %>
 <form method="post" action="UpdateContact">
 <div style="text-align: center;">
-	<h3>Modifier un contact</h3>
+	<h1>Modifier un contact</h1>
 	<table style="border: solid 1px black;">
 		<tr>
 			<td>Prénom :</td><td><input type="text" name="firstName" size="25" <%out.print("value='"+contact.getFirstName()+"'"); %>></td>
@@ -47,7 +48,7 @@
 			<td>Email :</td><td><input type="text" name="email" size="25" <%out.print("value='"+contact.getEmail()+"'"); %>></td>
 		</tr>
 		<tr>
-			<td>Id :</td><td><%=contact.getId() %></td>
+			<td>Id :</td><td><%=contact.getId() %><input type="hidden" name="id" value="<%=contact.getId() %>"></td>
 		</tr>
 		<tr>
 			<td colspan="2"><input type="submit" value="Valider"></td>
