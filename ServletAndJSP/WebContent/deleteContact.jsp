@@ -1,4 +1,5 @@
 
+<%@page import="domain.PhoneNumber"%>
 <%@page import="domain.ContactGroup"%>
 <%@page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
 <%@page import="org.springframework.context.ApplicationContext"%>
@@ -36,6 +37,7 @@
 		<th>Email</th>
 		<th>Adresse</th>
 		<th>Groupes</th>
+		<th>Téléphones</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -54,6 +56,16 @@
 			if (c.getGroups().size()>0)
 			{
 				%><td><select><%for(ContactGroup group : c.getGroups()) { %> <option><%=group.getGroupName()%></option> <% } %></select></td><%
+			}
+			else
+			{
+				%><td>Aucun</td><%
+			}
+			%>
+			<%
+			if (c.getPhones().size()>0)
+			{
+				%><td><select><%for(PhoneNumber phone : c.getPhones()) { %> <option><%=phone.getPhoneNumber()%></option> <% } %></select></td><%
 			}
 			else
 			{

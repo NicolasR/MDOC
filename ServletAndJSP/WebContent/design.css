@@ -19,6 +19,11 @@ table
    border-collapse: collapse;
 }
 
+body
+{
+	background-color: #FFFFCC;
+}
+
 #login
 {
 	text-align: center;
