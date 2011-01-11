@@ -1,3 +1,4 @@
+<%@page import="domain.PhoneNumber"%>
 <%@page import="domain.Address"%>
 <%@page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
 <%@page import="org.springframework.context.ApplicationContext"%>
@@ -27,7 +28,14 @@ ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext
 DAO<Contact> daoContact = (DAO<Contact>)context.getBean("DAOContact");
 List<Contact> list = new ArrayList<Contact>();
 String searchType = request.getParameter("searchType");
-if (searchType.equals("byfirstName")) {
+if (request.getParameter("value").equals("*"))
+{
+	for(Contact contact : daoContact.getAll())
+	{
+		list.add(contact);
+	}
+}
+else if (searchType.equals("byfirstName")) {
 	String token = request.getParameter("value").toLowerCase();
 	for(Contact contact : daoContact.getAll()) {
 		if (contact.getFirstName().toLowerCase().contains(token))
@@ -69,6 +77,8 @@ else
 			<td>Code postale</td>
 			<td>Ville</td>
 			<td>Pays</td>
+			<td>Groupes</td>
+			<td>Téléphones</td>
 			<td></td>
 		</tr>
 	<%
@@ -83,6 +93,26 @@ else
 			<td><%=address.getZip()%></td>
 			<td><%=address.getCity()%></td>
 			<td><%=address.getCountry()%></td>
+			<%
+			if (contact.getGroups().size()>0)
+			{
+				%><td><select><%for(ContactGroup group : contact.getGroups()) { %> <option><%=group.getGroupName()%></option> <% } %></select></td><%
+			}
+			else
+			{
+				%><td>Aucun</td><%
+			}
+			%>
+			<%
+			if (contact.getPhones().size()>0)
+			{
+				%><td><select><%for(PhoneNumber phone : contact.getPhones()) { %> <option><%=phone.getPhoneNumber()%></option> <% } %></select></td><%
+			}
+			else
+			{
+				%><td>Aucun</td><%
+			}
+			%>
 			<td><%
 				String urlargs = "updateContact.jsp?"+
 				"id=" + contact.getId() + //"&firstname="+

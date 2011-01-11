@@ -65,6 +65,19 @@
 			<td>Pays :</td><td><input type="text" name="country" size="25" <%out.print("value='"+address.getCountry()+"'"); %>></td>
 		</tr>
 		<tr>
+		<td>Ajouter un téléphone :</td>
+		<td>
+			<table>
+				<tr>
+				<td>Type :</td><td><input type="text" name="phoneKind" size="25"></td>
+				</tr>
+				<tr>
+				<td>Numero :</td><td><input type="text" name="phoneNumber" size="25"></td>
+				</tr>
+			</table>
+		</td>
+		</tr>
+		<tr>
 			<td>Id :</td><td><%=contact.getId() %><input type="hidden" name="id" value="<%=contact.getId() %>"></td>
 		</tr>
 		<tr>
