@@ -29,16 +29,17 @@ List<Contact> list = new ArrayList<Contact>();
 String searchType = request.getParameter("searchType");
 if (searchType.equals("byfirstName")) {
 	String token = request.getParameter("value").toLowerCase();
-	for(Contact contact : daoContact.getAll()) {
-		if (contact.getFirstName().toLowerCase().contains(token))
+	for(Contact contact : daoContact.query("from Contact WHERE firstName LIKE '%"+token+"%'")) {
+		//if (contact.getFirstName().toLowerCase().contains(token))
 			list.add(contact);
 	}
 }
 else if (searchType.equals("bylastName"))
 {
 	String token = request.getParameter("value").toLowerCase();
-	for(Contact contact : daoContact.getAll()) {
-		if (contact.getLastName().toLowerCase().contains(token))
+
+	for(Contact contact : daoContact.query("from Contact WHERE lastName LIKE '%"+token+"%'")) {
+		//if (contact.getLastName().toLowerCase().contains(token))
 			list.add(contact);
 	}
 }
