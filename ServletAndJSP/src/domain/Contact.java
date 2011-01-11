@@ -48,6 +48,15 @@ public class Contact {
 	 */
 	private Set<ContactGroup> groups;
 	
+	public Contact(String firstName, String lastName, String email,
+			Address address, Set<PhoneNumber> phones, Set<ContactGroup> groups) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.address = address;
+		this.phones = phones;
+		this.groups = groups;
+	}
 	
 	/**
 	 * Renvoie les numéros de téléphone du contact

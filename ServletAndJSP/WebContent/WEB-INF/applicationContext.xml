@@ -142,17 +142,15 @@
 		</property>
 	</bean>
 	<bean id="addressC2" class="domain.Address">
-		<property name="street" value="2 Cheyenne Mountain street" />
-		<property name="city" value="Whashington DC" />
-		<property name="zip" value="12345" />
-		<property name="country" value="US" />
+		<constructor-arg type="String"><value>2 Cheyenne Mountain street</value></constructor-arg>
+		<constructor-arg type="String"><value>Whashington DC</value></constructor-arg>
+		<constructor-arg type="String"><value>12345</value></constructor-arg>
+		<constructor-arg type="String"><value>US</value></constructor-arg>
 	</bean>
 	<bean id="phonenumberC2" class="domain.PhoneNumber">
-		<property name="phoneKind" value="Portable" />
-		<property name="phoneNumber" value="06......" />
-		<property name="contact">
-			<ref bean="contact2" />
-		</property>
+		<constructor-arg type="String"><value>Portable</value></constructor-arg>
+		<constructor-arg type="String"><value>06......</value></constructor-arg>
+		<constructor-arg><ref bean="contact2"></ref></constructor-arg>
 	</bean>
 	<!-- Fin contact1 -->
 	

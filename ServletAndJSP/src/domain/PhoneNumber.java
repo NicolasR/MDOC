@@ -34,11 +34,12 @@ public class PhoneNumber {
 	 * @param phoneKind type de numéro
 	 * @param phoneNumber le numéro de téléphone
 	 */
-	public PhoneNumber(/*Long id, */String phoneKind, String phoneNumber) {
+	public PhoneNumber(String phoneKind, String phoneNumber, Contact contact) {
 		super();
 		//this.id = id;
 		this.phoneKind = phoneKind;
 		this.phoneNumber = phoneNumber;
+		this.contact = contact;
 	}
 
 	/**

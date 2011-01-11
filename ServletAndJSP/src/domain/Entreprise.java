@@ -20,6 +20,10 @@ public class Entreprise extends Contact {
 		super();
 	}
 
+	public Entreprise(int NumSiret) {
+		super();
+		this.NumSiret = NumSiret;
+	}
 	/**
 	 * Renvoie le numéro SIRET
 	 * @return le numéro SIRET
