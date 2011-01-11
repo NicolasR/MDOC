@@ -84,7 +84,6 @@ public class DAOContact extends DAO<Contact> {
 			return false;
 		}*/
 		Contact contact = find(id);
-		System.out.println("COUCOU"+contact.getFirstName());
 		//Transaction transaction = HibernateUtil.currentSession().beginTransaction();
 		
 		// Suppression de la reference du contact dans tous ses numéros de téléphone :

@@ -19,6 +19,7 @@
 						<option value="byfirstName">Prénom</option>
 						<option value="bylastName">Nom</option>
 						<option value="byid">Id</option>
+						<option value="bygroup">Groupe</option>
 					</select>
 				</td>
 				<td><input type="text" name="value" size="25"></td>
