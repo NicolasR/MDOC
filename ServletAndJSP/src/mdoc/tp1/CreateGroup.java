@@ -63,7 +63,7 @@ public class CreateGroup extends HttpServlet {
 				break;
 			}
 		}
-		if (needToCreate)
+		if (needToCreate && request.getParameter("newGroup").length()>0)
 		{
 			ContactGroup contactGroup = new ContactGroup();
 			contactGroup.setGroupName(request.getParameter("newGroup"));
