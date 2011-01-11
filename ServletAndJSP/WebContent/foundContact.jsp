@@ -39,5 +39,6 @@
 		<a href='<%=urlargs%>'>Modifier</a>
 		<%
 	}%>
+<%@ include file="bottom.jsp" %>
 </body>
 </html>

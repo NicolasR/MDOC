@@ -11,7 +11,10 @@
 <%@ include file="checkLoginOK.jsp" %>
 <div style="text-align: center;">
 	<h1>Rechercher un contact</h1>
-	<table id="search_menu">
+</div>
+<div style="text-align: center;">
+
+	<table id="search_menu" style="margin: auto;">
 		<form method="post" action="SearchContact">
 			<tr>
 				<td>
@@ -30,5 +33,6 @@
 		</form>
 	</table>
 </div>
+<%@ include file="bottom.jsp" %>
 </body>
 </html>

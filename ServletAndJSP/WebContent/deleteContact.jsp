@@ -26,9 +26,11 @@
 		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 		DAO<Contact> daoContact = (DAO<Contact>)context.getBean("DAOContact");
 		%>
-	<div id="delete_menu">
+	<div style="text-align: center;">
 		<h1>Liste des contacts</h1>
-		<table style="border: solid 1px black;">
+	</div>
+	<div id="delete_menu">
+		<table style="border: solid 1px black; margin: auto;">
 		<thead>
 		<tr>
 		<th>ID</th>
@@ -84,5 +86,6 @@
 		%>
 	
 	</form>
+	<%@ include file="bottom.jsp" %>
 </body>
 </html>

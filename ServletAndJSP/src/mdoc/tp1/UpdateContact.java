@@ -75,10 +75,18 @@ public class UpdateContact extends HttpServlet {
 	      String lastName = request.getParameter("lastName");
 	      String email = request.getParameter("email");
 	      String id = request.getParameter("id");
+	      String street = request.getParameter("street");
+	      String zip = request.getParameter("zip");
+	      String city = request.getParameter("city");
+	      String country = request.getParameter("country");
 	      Contact contact = daoContact.find(Long.parseLong(id));
 	      contact.setFirstName(firstName);
 	      contact.setLastName(lastName);
 	      contact.setEmail(email);
+	      contact.getAddress().setStreet(street);
+	      contact.getAddress().setZip(zip);
+	      contact.getAddress().setCity(city);
+	      contact.getAddress().setCountry(country);
 	      daoContact.update(contact);
 	      /*con.close();
 		} catch (SQLException e) {

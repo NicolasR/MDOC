@@ -1,3 +1,4 @@
+<%@page import="domain.Address"%>
 <%@page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
 <%@page import="org.springframework.context.ApplicationContext"%>
 <%@page import="domain.Contact"%>
@@ -55,22 +56,33 @@ if (list.size() == 0)
 else
 {
 	%>
+	<div style="text-align: center;">
+		<h3><%out.print(list.size()+" résultat(s)");%></h3>
+	</div>
 	<div id="found" style="text-align: center;">
-	<h3><%out.print(list.size()+" résultat(s)");%></h3>
-	<table style="border: solid 1px black;">
+	<table style="border: solid 1px black; margin: auto;">
 		<tr>
 			<td>Nom</td>
 			<td>Prénom</td>
 			<td>Email</td>
+			<td>Rue</td>
+			<td>Code postale</td>
+			<td>Ville</td>
+			<td>Pays</td>
 			<td></td>
 		</tr>
 	<%
 	for(Contact contact : list) {
+		Address address = contact.getAddress();
 		%>
 		<tr>
 			<td><%=contact.getLastName()%></td>
 			<td><%=contact.getFirstName()%></td>
 			<td><%=contact.getEmail()%></td>
+			<td><%=address.getStreet()%></td>
+			<td><%=address.getZip()%></td>
+			<td><%=address.getCity()%></td>
+			<td><%=address.getCountry()%></td>
 			<td><%
 				String urlargs = "updateContact.jsp?"+
 				"id=" + contact.getId() + //"&firstname="+
@@ -87,5 +99,6 @@ else
 	<%
 }
 %>
+<%@ include file="bottom.jsp" %>
 </body>
 </html>

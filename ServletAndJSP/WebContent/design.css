@@ -54,7 +54,6 @@ body
 #update_menu, #update_menu tr, #update_menu tr td, #found table, #found tr, #found tr td
 {
 	border: solid 1px black;
-	width: 50%;
 }
 
 #addContact_menu tr td
