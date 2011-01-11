@@ -33,11 +33,12 @@ public class CheckLogin extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		if( request.getParameter("username").equals(request.getParameter("password")) )
+		String userName = request.getParameter("username");
+		if( userName.length() > 0 && userName.equals(request.getParameter("password")) )
 		{
 			HttpSession session = request.getSession(true);
 			session.setAttribute("isAuth", new Boolean(true));
-			session.setAttribute("userName", request.getParameter("username"));
+			session.setAttribute("userName", userName);
 			request.getRequestDispatcher("accueil.jsp").forward(request, response);
 		}
 		else
