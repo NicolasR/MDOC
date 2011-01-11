@@ -12,6 +12,9 @@
 <div style="text-align: center;">
 	<h2>Epic Fail!</h2>
 	<br />
+	<div id="error_desc">
+		<%=exception.getMessage() %>
+	</div> 
 	<a href="accueil.jsp">Accueil</a>
 </div>
 </body>
